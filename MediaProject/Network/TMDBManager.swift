@@ -15,7 +15,7 @@ class TMDBManager {
     private init() { }
     
     let header: HTTPHeaders = [
-        "Authorization": ""
+        "Authorization": "Bearer \(APIKey.tmbdToken)"
     ]
     
     func callRequest(type: Endpoint, completion: @escaping (JSON) -> ()) {

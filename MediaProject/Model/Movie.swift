@@ -10,13 +10,19 @@ import Foundation
 struct Movie {
     let title: String
     let posterImagePath: String
+    let backdropImagePath: String
     let releaseDate: String
     let genreIds: [Int]
     let rate: Double
     
     var posterImageUrl: String {
-        let baseUrl = "https://image.tmdb.org/t/p/w500"
-        return baseUrl + posterImagePath
+        let url = Endpoint.image.requestUrl
+        return url + posterImagePath
+    }
+    
+    var backdropImageUrl: String {
+        let url = Endpoint.image.requestUrl
+        return url + backdropImagePath
     }
     
     var genres: String {

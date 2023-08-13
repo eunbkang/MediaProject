@@ -41,6 +41,7 @@ class TrendingViewController: UIViewController {
             let releaseDate = item["release_date"].stringValue
             let genres = item["genre_ids"].arrayValue
             let poster = item["poster_path"].stringValue
+            let backdrop = item["backdrop_path"].stringValue
             let rate = item["vote_average"].doubleValue
             
             var genreIds: [Int] = []
@@ -49,7 +50,7 @@ class TrendingViewController: UIViewController {
                 genreIds.append(id.intValue)
             }
             
-            let movie = Movie(title: title, posterImagePath: poster, releaseDate: releaseDate, genreIds: genreIds, rate: rate)
+            let movie = Movie(title: title, posterImagePath: poster, backdropImagePath: backdrop, releaseDate: releaseDate, genreIds: genreIds, rate: rate)
             
             movieList.append(movie)
         }

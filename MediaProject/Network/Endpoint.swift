@@ -10,11 +10,13 @@ import Foundation
 enum Endpoint {
     case trending
     case credit
+    case image
     
     var requestUrl: String {
         switch self {
         case .trending: return URL.makeEndPointUrl("trending/movie/week?language=ko-KR")
         case .credit: return URL.makeEndPointUrl("")
+        case .image: return URL.makeImageUrl("w500")
         }
     }
 }
