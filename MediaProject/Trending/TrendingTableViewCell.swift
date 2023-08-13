@@ -37,7 +37,7 @@ class TrendingTableViewCell: UITableViewCell {
         rateLabel.text = String(format: "%.1f", movie.rate)
         genreLabel.text = movie.genres
         
-        if let url = URL(string: movie.posterImageUrl) {
+        if let url = URL(string: movie.backdropImageUrl) {
             posterImageView.kf.setImage(with: url)
         }
     }
