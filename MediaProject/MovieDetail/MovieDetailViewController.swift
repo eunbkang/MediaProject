@@ -13,6 +13,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet var movieDetailTableView: UITableView!
     
     var movie: Movie?
+    var castList: [Cast] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,6 @@ class MovieDetailViewController: UIViewController {
     
     func callCreditRequest() {
         guard let movieId = movie?.id else {
-            print("no movieId")
             return
         }
         
@@ -45,9 +45,7 @@ class MovieDetailViewController: UIViewController {
     }
     
     func makeCastFromJson(json: JSON) {
-        let results = json["results"].arrayValue
-        
-        var castList: [Cast] = []
+        let results = json["cast"].arrayValue
         
         for item in results {
             let name = item["name"].stringValue
@@ -58,9 +56,8 @@ class MovieDetailViewController: UIViewController {
             
             castList.append(cast)
         }
-        movie?.cast = castList
         
-        self.movieDetailTableView.reloadData()
+        self.movieDetailTableView.reloadSections([1, 2], with: .automatic)
     }
 }
 
@@ -80,8 +77,7 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return 1
             
         case MovieDetailSection.cast.rawValue:
-            guard let cast = movie?.cast else { return 0 }
-            return cast.count
+            return castList.count
             
         default:
             return 0
@@ -108,9 +104,8 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             
         case MovieDetailSection.cast.rawValue:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CastTableViewCell.identifier) as? CastTableViewCell else { return UITableViewCell() }
-            guard let cast = movie.cast else { return UITableViewCell() }
             
-            cell.configData(row: cast[indexPath.row])
+            cell.configData(cast: castList[indexPath.row])
             
             return cell
             

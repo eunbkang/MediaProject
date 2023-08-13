@@ -16,15 +16,16 @@ class CastTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        castImageView.layer.cornerRadius = 8
+        castImageView.contentMode = .scaleAspectFill
+        castImageView.layer.cornerRadius = 12
         castImageView.clipsToBounds = true
     }
     
-    func configData(row: Cast) {
-        nameLabel.text = row.name
-        roleLable.text = row.character
+    func configData(cast: Cast) {
+        nameLabel.text = cast.name
+        roleLable.text = cast.character
         
-        if let imageUrl = URL(string: row.profileImageUrl) {
+        if let imageUrl = URL(string: cast.profileImageUrl) {
             castImageView.kf.setImage(with: imageUrl)
         }
     }

@@ -16,7 +16,6 @@ struct Movie {
     let overview: String
     let genreIds: [Int]
     let rate: Double
-    var cast: [Cast]?
     
     var posterImageUrl: String {
         let url = URL.makeImageUrl()
