@@ -138,7 +138,6 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }
-    
 }
 
 // MARK: - UI

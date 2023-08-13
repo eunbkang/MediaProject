@@ -13,6 +13,7 @@ class TrendingViewController: UIViewController {
     @IBOutlet var trendingTableView: UITableView!
     
     var movieList: [Movie] = []
+    var page = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,13 +25,16 @@ class TrendingViewController: UIViewController {
         
         trendingTableView.delegate = self
         trendingTableView.dataSource = self
+        trendingTableView.prefetchDataSource = self
         
         configTableView()
-        callTrendingRequest()
+        callTrendingRequest(page: page)
     }
     
-    func callTrendingRequest() {
-        TMDBManager.shared.callRequest(url: URL.makeEndPointUrl()) { json in
+    func callTrendingRequest(page: Int) {
+        let url = URL.makeEndPointUrl() + "&page=\(page)"
+        
+        TMDBManager.shared.callRequest(url: url) { json in
             self.makeMovieListFromJson(json: json)
         }
     }
@@ -62,6 +66,8 @@ class TrendingViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
 extension TrendingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movieList.count
@@ -85,6 +91,21 @@ extension TrendingViewController: UITableViewDelegate, UITableViewDataSource {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+// MARK: - UITableViewDataSourcePrefetching
+
+extension TrendingViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            if movieList.count - 1 == indexPath.row && page < 1000 {
+                page += 1
+                callTrendingRequest(page: page)
+            }
+        }
+    }
+}
+
+// MARK: - UI
 
 extension TrendingViewController {
     func configTableView() {
