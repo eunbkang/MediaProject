@@ -14,6 +14,7 @@ class MovieDetailViewController: UIViewController {
     
     var movie: Movie?
     var castList: [Cast] = []
+    var isShowingMore: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +58,7 @@ class MovieDetailViewController: UIViewController {
             castList.append(cast)
         }
         
-        self.movieDetailTableView.reloadSections([1, 2], with: .automatic)
+        self.movieDetailTableView.reloadSections([MovieDetailSection.cast.rawValue], with: .automatic)
     }
 }
 
@@ -98,6 +99,8 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
         case MovieDetailSection.overview.rawValue:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OverViewTableViewCell.identifier) as? OverViewTableViewCell else { return UITableViewCell() }
             
+            cell.isShowingMore = isShowingMore
+            cell.configMoreButton()
             cell.configData(row: movie)
             
             return cell
@@ -121,6 +124,18 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return MovieDetailSection.cast.header
         } else {
             return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let section = MovieDetailSection.overview.rawValue
+        if indexPath == [section, 0] {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: OverViewTableViewCell.identifier) as? OverViewTableViewCell else { return }
+            
+            isShowingMore.toggle()
+            cell.configMoreButton()
+
+            tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }
     

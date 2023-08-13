@@ -16,6 +16,8 @@ class CastTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.selectionStyle = .none
+        
         castImageView.contentMode = .scaleAspectFill
         castImageView.layer.cornerRadius = 12
         castImageView.clipsToBounds = true

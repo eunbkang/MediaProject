@@ -17,23 +17,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3d-TP-dl0">
-                        <rect key="frame" x="24" y="16" width="272" height="15.666666666666664"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3d-TP-dl0">
+                        <rect key="frame" x="24" y="15.999999999999998" width="272" height="19.333333333333329"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3u-SJ-6ih">
-                        <rect key="frame" x="122.66666666666669" y="47.666666666666657" width="75" height="34.333333333333343"/>
+                        <rect key="frame" x="136.33333333333334" y="43.333333333333329" width="47.666666666666657" height="34.333333333333329"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="chevron.down" catalog="system"/>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="G3u-SJ-6ih" firstAttribute="top" secondItem="J3d-TP-dl0" secondAttribute="bottom" constant="16" id="CRe-yG-2YM"/>
+                    <constraint firstItem="G3u-SJ-6ih" firstAttribute="top" secondItem="J3d-TP-dl0" secondAttribute="bottom" constant="8" id="CRe-yG-2YM"/>
                     <constraint firstItem="J3d-TP-dl0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="CXl-Ww-OVW"/>
                     <constraint firstItem="G3u-SJ-6ih" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="U4n-eV-VBp"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="G3u-SJ-6ih" secondAttribute="bottom" constant="16" id="ao4-6t-jcI"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="G3u-SJ-6ih" secondAttribute="bottom" constant="8" id="ao4-6t-jcI"/>
                     <constraint firstAttribute="trailing" secondItem="J3d-TP-dl0" secondAttribute="trailing" constant="24" id="iAM-fm-MyF"/>
                     <constraint firstItem="J3d-TP-dl0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="z3u-5U-cEb"/>
                 </constraints>
@@ -46,4 +46,7 @@
             <point key="canvasLocation" x="39.694656488549619" y="42.95774647887324"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="chevron.down" catalog="system" width="128" height="70"/>
+    </resources>
 </document>

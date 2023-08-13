@@ -18,6 +18,8 @@ class DetailPosterTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.selectionStyle = .none
+        
         titleLabel.textColor = .white
         titleLabel.font = .systemFont(ofSize: 20, weight: .bold)
     }
