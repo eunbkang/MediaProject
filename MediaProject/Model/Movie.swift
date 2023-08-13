@@ -8,20 +8,23 @@
 import Foundation
 
 struct Movie {
+    let id: Int
     let title: String
     let posterImagePath: String
     let backdropImagePath: String
     let releaseDate: String
+    let overview: String
     let genreIds: [Int]
     let rate: Double
+    var cast: [Cast]?
     
     var posterImageUrl: String {
-        let url = Endpoint.image.requestUrl
+        let url = URL.makeImageUrl()
         return url + posterImagePath
     }
     
     var backdropImageUrl: String {
-        let url = Endpoint.image.requestUrl
+        let url = URL.makeImageUrl()
         return url + backdropImagePath
     }
     

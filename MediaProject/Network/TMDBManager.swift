@@ -18,9 +18,7 @@ class TMDBManager {
         "Authorization": "Bearer \(APIKey.tmbdToken)"
     ]
     
-    func callRequest(type: Endpoint, completion: @escaping (JSON) -> ()) {
-        
-        let url = type.requestUrl
+    func callRequest(url: String, completion: @escaping (JSON) -> ()) {
         
         AF.request(url, method: .get, headers: header).validate().responseJSON { response in
             switch response.result {

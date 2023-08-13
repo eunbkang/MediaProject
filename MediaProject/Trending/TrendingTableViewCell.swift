@@ -9,7 +9,6 @@ import UIKit
 import Kingfisher
 
 class TrendingTableViewCell: UITableViewCell {
-    static let identifier = "TrendingTableViewCell"
     
     @IBOutlet var cardShadowView: UIView!
     @IBOutlet var cardBackView: UIView!

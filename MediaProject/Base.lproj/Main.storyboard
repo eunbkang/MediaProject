@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Trending View Controller-->
+        <!-- -->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="TrendingViewController" id="BYZ-38-t0r" customClass="TrendingViewController" customModule="MediaProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TrendingViewController" title=" " id="BYZ-38-t0r" customClass="TrendingViewController" customModule="MediaProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,7 +31,7 @@
                             <constraint firstItem="vE0-Ug-aHV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wgA-7t-80o"/>
                         </constraints>
                     </view>
-                                        <navigationItem key="navigationItem" id="h3D-FB-XXM"/>
+                    <navigationItem key="navigationItem" id="h3D-FB-XXM"/>
                     <connections>
                         <outlet property="trendingTableView" destination="vE0-Ug-aHV" id="JaN-1c-J5r"/>
                     </connections>

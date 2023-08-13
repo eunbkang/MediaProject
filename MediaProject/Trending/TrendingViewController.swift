@@ -17,6 +17,8 @@ class TrendingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "  "
+        
         let trencingTableViewCellNib = UINib(nibName: TrendingTableViewCell.identifier, bundle: nil)
         trendingTableView.register(trencingTableViewCellNib, forCellReuseIdentifier: TrendingTableViewCell.identifier)
         
@@ -28,17 +30,19 @@ class TrendingViewController: UIViewController {
     }
     
     func callTrendingRequest() {
-        TMDBManager.shared.callRequest(type: .trending) { json in
+        TMDBManager.shared.callRequest(url: URL.makeEndPointUrl()) { json in
             self.makeMovieListFromJson(json: json)
         }
     }
 
-        func makeMovieListFromJson(json: JSON) {
+    func makeMovieListFromJson(json: JSON) {
         let results = json["results"].arrayValue
         
         for item in results {
+            let id = item["id"].intValue
             let title = item["title"].stringValue
             let releaseDate = item["release_date"].stringValue
+            let overview = item["overview"].stringValue
             let genres = item["genre_ids"].arrayValue
             let poster = item["poster_path"].stringValue
             let backdrop = item["backdrop_path"].stringValue
@@ -50,7 +54,7 @@ class TrendingViewController: UIViewController {
                 genreIds.append(id.intValue)
             }
             
-            let movie = Movie(title: title, posterImagePath: poster, backdropImagePath: backdrop, releaseDate: releaseDate, genreIds: genreIds, rate: rate)
+            let movie = Movie(id: id, title: title, posterImagePath: poster, backdropImagePath: backdrop, releaseDate: releaseDate, overview: overview, genreIds: genreIds, rate: rate)
             
             movieList.append(movie)
         }
@@ -63,12 +67,22 @@ extension TrendingViewController: UITableViewDelegate, UITableViewDataSource {
         return movieList.count
     }
 
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TrendingTableViewCell.identifier) as? TrendingTableViewCell else { return UITableViewCell() }
         
         cell.configMovieToView(movie: movieList[indexPath.row])
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let sb = UIStoryboard(name: "MovieDetail", bundle: nil)
+        guard let vc = sb.instantiateViewController(identifier: MovieDetailViewController.identifier) as? MovieDetailViewController else { return }
+        
+        vc.movie = movieList[indexPath.row]
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

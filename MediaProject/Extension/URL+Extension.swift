@@ -10,12 +10,17 @@ import Foundation
 extension URL {
     static let baseUrl = "https://api.themoviedb.org/3/"
     static let imageBaseUrl = "https://image.tmdb.org/t/p/"
+    static let languageQuery = "?language=ko-KR"
     
-    static func makeEndPointUrl(_ endPoint: String) -> String {
-        return baseUrl + endPoint
+    static func makeEndPointUrl() -> String {
+        return baseUrl + "trending/movie/week" + languageQuery
     }
     
-    static func makeImageUrl(_ image: String) -> String {
-        return imageBaseUrl + image
+    static func makeImageUrl() -> String {
+        return imageBaseUrl + "w500"
+    }
+    
+    static func makeCreditUrl(movieId: Int) -> String {
+        return baseUrl + "movie/\(movieId)/credits" + languageQuery
     }
 }
