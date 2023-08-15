@@ -6,13 +6,13 @@
 //
 
 import UIKit
-import SwiftyJSON
+import Alamofire
 
 class TrendingViewController: UIViewController {
 
     @IBOutlet var trendingTableView: UITableView!
     
-    var movieList: [Movie] = []
+    var movieList: [Result] = []
     var page = 1
     
     override func viewDidLoad() {
@@ -28,41 +28,14 @@ class TrendingViewController: UIViewController {
         trendingTableView.prefetchDataSource = self
         
         configTableView()
-        callTrendingRequest(page: page)
+        callRequest(page: page)
     }
     
-    func callTrendingRequest(page: Int) {
-        let url = URL.makeEndPointUrl() + "&page=\(page)"
-        
-        TMDBManager.shared.callRequest(url: url) { json in
-            self.makeMovieListFromJson(json: json)
+    func callRequest(page: Int) {
+        TMDBManager.shared.callTrendingRequest(page: page) { resultList in
+            self.movieList.append(contentsOf: resultList)
+            self.trendingTableView.reloadData()
         }
-    }
-
-    func makeMovieListFromJson(json: JSON) {
-        let results = json["results"].arrayValue
-        
-        for item in results {
-            let id = item["id"].intValue
-            let title = item["title"].stringValue
-            let releaseDate = item["release_date"].stringValue
-            let overview = item["overview"].stringValue
-            let genres = item["genre_ids"].arrayValue
-            let poster = item["poster_path"].stringValue
-            let backdrop = item["backdrop_path"].stringValue
-            let rate = item["vote_average"].doubleValue
-            
-            var genreIds: [Int] = []
-            
-            for id in genres {
-                genreIds.append(id.intValue)
-            }
-            
-            let movie = Movie(id: id, title: title, posterImagePath: poster, backdropImagePath: backdrop, releaseDate: releaseDate, overview: overview, genreIds: genreIds, rate: rate)
-            
-            movieList.append(movie)
-        }
-        self.trendingTableView.reloadData()
     }
 }
 
@@ -97,9 +70,9 @@ extension TrendingViewController: UITableViewDelegate, UITableViewDataSource {
 extension TrendingViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
-            if movieList.count - 1 == indexPath.row && page < 1000 {
+            if movieList.count - 1 == indexPath.row && page < 50 {
                 page += 1
-                callTrendingRequest(page: page)
+                callRequest(page: page)
             }
         }
     }

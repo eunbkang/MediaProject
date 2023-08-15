@@ -7,7 +7,6 @@
 
 import Foundation
 import Alamofire
-import SwiftyJSON
 
 class TMDBManager {
     
@@ -18,19 +17,33 @@ class TMDBManager {
         "Authorization": "Bearer \(APIKey.tmbdToken)"
     ]
     
-    func callRequest(url: String, completion: @escaping (JSON) -> ()) {
+    func callTrendingRequest(page: Int, completion: @escaping ([Result]) -> ()) {
+        let url = URL.makeEndPointUrl() + "&page=\(page)"
         
-        AF.request(url, method: .get, headers: header).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print("JSON: \(json)")
-                
-                completion(json)
-                
-            case .failure(let error):
-                print(error)
+        AF.request(url, method: .get, headers: header).validate()
+            .responseDecodable(of: MovieTrending.self) { response in
+                switch response.result {
+                case .success(let value):
+                    completion(value.results)
+                    
+                case .failure(let error):
+                    print(error)
+                }
             }
-        }
+    }
+    
+    func callCreditRequest(movieId: Int, completion: @escaping ([Cast]) -> ()) {
+        let url = URL.makeCreditUrl(movieId: movieId)
+        
+        AF.request(url, method: .get, headers: header).validate()
+            .responseDecodable(of: MovieCredit.self) { response in
+                switch response.result {
+                case .success(let value):
+                    completion(value.cast)
+                    
+                case .failure(let error):
+                    print(error)
+                }
+            }
     }
 }

@@ -6,14 +6,15 @@
 //
 
 import UIKit
-import SwiftyJSON
+import Alamofire
 
 class MovieDetailViewController: UIViewController {
 
     @IBOutlet var movieDetailTableView: UITableView!
     
-    var movie: Movie?
-    var castList: [Cast] = []
+    var movie: Result?
+    var castList: [Cast]?
+    
     var isShowingMore: Bool = false
     
     override func viewDidLoad() {
@@ -32,33 +33,16 @@ class MovieDetailViewController: UIViewController {
         movieDetailTableView.estimatedRowHeight = 100
         
         configUI()
-        callCreditRequest()
+        callRequest()
     }
     
-    func callCreditRequest() {
-        guard let movieId = movie?.id else {
-            return
-        }
+    func callRequest() {
+        guard let movieId = movie?.id else { return }
         
-        TMDBManager.shared.callRequest(url: URL.makeCreditUrl(movieId: movieId)) { json in
-            self.makeCastFromJson(json: json)
+        TMDBManager.shared.callCreditRequest(movieId: movieId) { resultList in
+            self.castList = resultList
+            self.movieDetailTableView.reloadSections([MovieDetailSection.cast.rawValue], with: .automatic)
         }
-    }
-    
-    func makeCastFromJson(json: JSON) {
-        let results = json["cast"].arrayValue
-        
-        for item in results {
-            let name = item["name"].stringValue
-            let image = item["profile_path"].stringValue
-            let character = item["character"].stringValue
-            
-            let cast = Cast(name: name, profileImage: image, character: character)
-            
-            castList.append(cast)
-        }
-        
-        self.movieDetailTableView.reloadSections([MovieDetailSection.cast.rawValue], with: .automatic)
     }
 }
 
@@ -78,7 +62,7 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return 1
             
         case MovieDetailSection.cast.rawValue:
-            return castList.count
+            return castList?.count ?? 0
             
         default:
             return 0
@@ -108,7 +92,8 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
         case MovieDetailSection.cast.rawValue:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CastTableViewCell.identifier) as? CastTableViewCell else { return UITableViewCell() }
             
-            cell.configData(cast: castList[indexPath.row])
+            guard let cast = castList?[indexPath.row] else { return UITableViewCell() }
+            cell.configData(cast: cast)
             
             return cell
             

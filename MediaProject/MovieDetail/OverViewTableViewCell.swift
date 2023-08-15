@@ -27,7 +27,7 @@ class OverViewTableViewCell: UITableViewCell {
         configMoreButton()
     }
     
-    func configData(row: Movie) {
+    func configData(row: Result) {
         overViewLabel.text = row.overview
     }
     
@@ -43,7 +43,5 @@ class OverViewTableViewCell: UITableViewCell {
             moreButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
             
         }
-        
-        
     }
 }

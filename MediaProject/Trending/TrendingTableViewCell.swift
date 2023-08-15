@@ -31,10 +31,10 @@ class TrendingTableViewCell: UITableViewCell {
         cardBackView.clipsToBounds = true
     }
     
-    func configMovieToView(movie: Movie) {
+    func configMovieToView(movie: Result) {
         titleLabel.text = movie.title
         releaseDateLabel.text = movie.releaseDate
-        rateLabel.text = String(format: "%.1f", movie.rate)
+        rateLabel.text = String(format: "%.1f", movie.voteAverage)
         genreLabel.text = movie.genres
         
         if let url = URL(string: movie.backdropImageUrl) {
