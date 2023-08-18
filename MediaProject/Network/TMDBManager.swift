@@ -93,4 +93,20 @@ class TMDBManager {
                 }
             }
     }
+    
+    func callSimilarMovieRequest(movieId: Int, completion: @escaping ([MovieResult]) -> ()) {
+        let url = URL.makeSimilarMovieUrl(movieId: movieId)
+        
+        AF.request(url, method: .get, headers: header).validate()
+            .responseDecodable(of: SimilarMovies.self) { response in
+                switch response.result {
+                case .success(let value):
+                    print(value.results)
+                    completion(value.results)
+                    
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
 }

@@ -11,6 +11,7 @@ class SimilarTableViewCell: UITableViewCell {
 
     @IBOutlet var similarCollectionView: UICollectionView!
     
+    var movieList: [MovieResult]?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,13 +25,16 @@ class SimilarTableViewCell: UITableViewCell {
 
 extension SimilarTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return movieList?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SimilarCollectionViewCell.identifier, for: indexPath) as? SimilarCollectionViewCell else {
             return UICollectionViewCell()
         }
+        
+        guard let movie = movieList?[indexPath.item] else { return UICollectionViewCell() }
+        cell.configData(movie: movie)
         
         return cell
     }
@@ -57,7 +61,7 @@ extension SimilarTableViewCell {
         let spacing: CGFloat = 8
         let width = (UIScreen.main.bounds.width - (spacing * 2) - (inset * 2)) / 3
         
-        layout.itemSize = CGSize(width: width, height: width * 1.6)
+        layout.itemSize = CGSize(width: width, height: width * 1.8)
         layout.sectionInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
         layout.minimumLineSpacing = spacing
         layout.minimumInteritemSpacing = spacing

@@ -40,4 +40,8 @@ extension URL {
     static func makeYouTubeUrl(with id: String) -> String {
         return youTubeBaseUrl + id
     }
+    
+    static func makeSimilarMovieUrl(movieId: Int) -> String {
+        return baseUrl + "movie/\(movieId)/similar"
+    }
 }

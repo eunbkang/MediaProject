@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SimilarCollectionViewCell: UICollectionViewCell {
 
@@ -15,7 +16,17 @@ class SimilarCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.backgroundColor = .systemTeal
+        posterImageView.contentMode = .scaleAspectFill
+        posterImageView.layer.cornerRadius = 8
+        posterImageView.clipsToBounds = true
     }
 
+    func configData(movie: MovieResult) {
+        
+        titleLabel.text = movie.title
+        
+        if let imageUrl = URL(string: movie.posterImageUrl) {
+            posterImageView.kf.setImage(with: imageUrl)
+        }
+    }
 }

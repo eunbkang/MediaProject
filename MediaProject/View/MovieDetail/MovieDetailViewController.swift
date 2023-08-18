@@ -14,6 +14,7 @@ class MovieDetailViewController: UIViewController {
     
     var movie: MovieResult?
     var castList: [Cast]?
+    var similarMovieList: [MovieResult]?
     
     var isShowingMore: Bool = false
     
@@ -32,6 +33,11 @@ class MovieDetailViewController: UIViewController {
         TMDBManager.shared.callCreditRequest(movieId: movieId) { resultList in
             self.castList = resultList
             self.movieDetailTableView.reloadSections([MovieDetailSection.cast.rawValue], with: .automatic)
+        }
+        
+        TMDBManager.shared.callSimilarMovieRequest(movieId: movieId) { resultList in
+            self.similarMovieList = resultList
+            self.movieDetailTableView.reloadSections([MovieDetailSection.similar.rawValue], with: .automatic)
         }
     }
 }
@@ -88,6 +94,8 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             
         case MovieDetailSection.similar.rawValue:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SimilarTableViewCell.identifier) as? SimilarTableViewCell else { return UITableViewCell() }
+            
+            cell.movieList = similarMovieList
             
             return cell
             

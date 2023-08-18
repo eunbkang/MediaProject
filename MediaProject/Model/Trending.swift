@@ -23,19 +23,19 @@ struct MovieTrending: Codable {
 struct MovieResult: Codable {
     let originalLanguage: String
     let genreIDS: [Int]
-    let posterPath: String
+    let posterPath: String?
     let id: Int
     let releaseDate: String
     let voteAverage: Double
-    let backdropPath: String
+    let backdropPath: String?
     let voteCount: Int
-    let mediaType: MediaType
+    let mediaType: MediaType?
     let video: Bool
     let originalTitle, overview: String
     let popularity: Double
     let title: String
     let adult: Bool
-
+    
     enum CodingKeys: String, CodingKey {
         case originalLanguage = "original_language"
         case genreIDS = "genre_ids"
@@ -53,11 +53,15 @@ struct MovieResult: Codable {
     
     var posterImageUrl: String {
         let url = URL.makeImageUrl()
+        guard let posterPath else { return "" }
+        
         return url + posterPath
     }
     
     var backdropImageUrl: String {
         let url = URL.makeImageUrl()
+        guard let backdropPath else { return "" }
+        
         return url + backdropPath
     }
     

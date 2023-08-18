@@ -18,7 +18,7 @@ class CastCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         castImageView.contentMode = .scaleAspectFill
-        castImageView.layer.cornerRadius = 12
+        castImageView.layer.cornerRadius = 8
         castImageView.clipsToBounds = true
     }
 
