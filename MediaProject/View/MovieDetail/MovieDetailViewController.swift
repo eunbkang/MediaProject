@@ -62,7 +62,8 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return 1
             
         case MovieDetailSection.cast.rawValue:
-            return castList?.count ?? 0
+//            return castList?.count ?? 0
+            return 1
             
         default:
             return 0
@@ -92,8 +93,7 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
         case MovieDetailSection.cast.rawValue:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CastTableViewCell.identifier) as? CastTableViewCell else { return UITableViewCell() }
             
-            guard let cast = castList?[indexPath.row] else { return UITableViewCell() }
-            cell.configData(cast: cast)
+            cell.castList = castList
             
             return cell
             

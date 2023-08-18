@@ -1,32 +1,31 @@
 //
-//  CastTableViewCell.swift
+//  CastCollectionViewCell.swift
 //  MediaProject
 //
-//  Created by Eunbee Kang on 2023/08/13.
+//  Created by Eunbee Kang on 2023/08/18.
 //
 
 import UIKit
+import Kingfisher
 
-class CastTableViewCell: UITableViewCell {
+class CastCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var castImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var roleLable: UILabel!
+    @IBOutlet var roleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.selectionStyle = .none
         
         castImageView.contentMode = .scaleAspectFill
         castImageView.layer.cornerRadius = 12
         castImageView.clipsToBounds = true
     }
-    
+
     func configData(cast: Cast) {
         nameLabel.text = cast.name
-        roleLable.text = cast.character
-        
+        roleLabel.text = cast.character
+
         if let imageUrl = URL(string: cast.profileImageUrl) {
             castImageView.kf.setImage(with: imageUrl)
         }
