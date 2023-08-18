@@ -24,7 +24,7 @@ class DetailPosterTableViewCell: UITableViewCell {
         titleLabel.font = .systemFont(ofSize: 20, weight: .bold)
     }
 
-    func configData(row: Result) {
+    func configData(row: MovieResult) {
         titleLabel.text = row.title
         
         if let backdropUrl = URL(string: row.backdropImageUrl) {

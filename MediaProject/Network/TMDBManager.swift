@@ -17,11 +17,26 @@ class TMDBManager {
         "Authorization": "Bearer \(APIKey.tmbdToken)"
     ]
     
-    func callTrendingRequest(page: Int, completion: @escaping ([Result]) -> ()) {
+    func callTrendingRequest(page: Int, completion: @escaping ([MovieResult]) -> ()) {
         let url = URL.makeEndPointUrl() + "&page=\(page)"
         
         AF.request(url, method: .get, headers: header).validate()
             .responseDecodable(of: MovieTrending.self) { response in
+                switch response.result {
+                case .success(let value):
+                    completion(value.results)
+                    
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
+    
+    func callTrendingTVRequest(page: Int, completion: @escaping ([TVResult]) -> ()) {
+        let url = URL.makeTVTrendingUrl() + "&page=\(page)"
+        
+        AF.request(url, method: .get, headers: header).validate()
+            .responseDecodable(of: TVTrending.self) { response in
                 switch response.result {
                 case .success(let value):
                     completion(value.results)
@@ -40,6 +55,38 @@ class TMDBManager {
                 switch response.result {
                 case .success(let value):
                     completion(value.cast)
+                    
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
+    
+    func callTVDetailRequest(seriesId: Int, completion: @escaping (TVDetail) -> ()) {
+        let url = URL.makeTVDetailUrl(seriesId: seriesId)
+        
+        AF.request(url, method: .get, headers: header).validate()
+            .responseDecodable(of: TVDetail.self) { response in
+                switch response.result {
+                case .success(let value):
+                    completion(value)
+                    
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
+    
+    func callTVSeasonRequest(seriesId: Int, seasonNo: Int, completion: @escaping (TVSeason) -> ()) {
+        let url = URL.makeTVSeasonUrl(seriesId: seriesId, seasonNo: seasonNo)
+        
+        AF.request(url, method: .get, headers: header).validate()
+            .responseDecodable(of: TVSeason.self) { response in
+                switch response.result {
+                case .success(let value):
+                    print(value)
+                    print(value.episodes)
+                    completion(value)
                     
                 case .failure(let error):
                     print(error)

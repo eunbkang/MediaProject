@@ -27,7 +27,7 @@ class OverViewTableViewCell: UITableViewCell {
         configMoreButton()
     }
     
-    func configData(row: Result) {
+    func configData(row: MovieResult) {
         overViewLabel.text = row.overview
     }
     

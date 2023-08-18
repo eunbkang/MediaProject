@@ -12,16 +12,14 @@ class TrendingViewController: UIViewController {
 
     @IBOutlet var trendingTableView: UITableView!
     
-    var movieList: [Result] = []
+    var movieList: [MovieResult] = []
     var page = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        title = "  "
         
-        let trencingTableViewCellNib = UINib(nibName: TrendingTableViewCell.identifier, bundle: nil)
-        trendingTableView.register(trencingTableViewCellNib, forCellReuseIdentifier: TrendingTableViewCell.identifier)
+        let trendingTableViewCellNib = UINib(nibName: TrendingTableViewCell.identifier, bundle: nil)
+        trendingTableView.register(trendingTableViewCellNib, forCellReuseIdentifier: TrendingTableViewCell.identifier)
         
         trendingTableView.delegate = self
         trendingTableView.dataSource = self

@@ -31,13 +31,24 @@ class TrendingTableViewCell: UITableViewCell {
         cardBackView.clipsToBounds = true
     }
     
-    func configMovieToView(movie: Result) {
+    func configMovieToView(movie: MovieResult) {
         titleLabel.text = movie.title
         releaseDateLabel.text = movie.releaseDate
         rateLabel.text = String(format: "%.1f", movie.voteAverage)
         genreLabel.text = movie.genres
         
         if let url = URL(string: movie.backdropImageUrl) {
+            posterImageView.kf.setImage(with: url)
+        }
+    }
+    
+    func configTVShowToView(tv: TVResult) {
+        titleLabel.text = tv.name
+        releaseDateLabel.text = tv.firstAirDate
+        rateLabel.text = String(format: "%.1f", tv.voteAverage)
+        genreLabel.text = tv.genres
+        
+        if let url = URL(string: tv.backdropImageUrl) {
             posterImageView.kf.setImage(with: url)
         }
     }

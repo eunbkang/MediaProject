@@ -16,6 +16,18 @@ extension URL {
         return baseUrl + "trending/movie/week" + languageQuery
     }
     
+    static func makeTVTrendingUrl() -> String {
+        return baseUrl + "trending/tv/week" + languageQuery
+    }
+    
+    static func makeTVDetailUrl(seriesId id: Int) -> String {
+        return baseUrl + "tv/\(id)" + languageQuery
+    }
+    
+    static func makeTVSeasonUrl(seriesId id: Int, seasonNo: Int) -> String {
+        return baseUrl + "tv/\(id)/season/\(seasonNo)" + languageQuery
+    }
+    
     static func makeImageUrl() -> String {
         return imageBaseUrl + "w500"
     }

@@ -51,7 +51,6 @@ struct Cast: Codable {
     }
 }
 
-
 // MARK: - Crew
 struct Crew: Codable {
     let knownForDepartment: Department
@@ -64,6 +63,8 @@ struct Crew: Codable {
     let name, job: String
     let profilePath: String?
     let department: String
+    let character: String?
+    let order: Int?
 
     enum CodingKeys: String, CodingKey {
         case knownForDepartment = "known_for_department"
@@ -74,6 +75,8 @@ struct Crew: Codable {
         case id, name, job
         case profilePath = "profile_path"
         case department
+        case character
+        case order
     }
 }
 

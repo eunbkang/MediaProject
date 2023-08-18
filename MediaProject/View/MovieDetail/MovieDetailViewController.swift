@@ -12,7 +12,7 @@ class MovieDetailViewController: UIViewController {
 
     @IBOutlet var movieDetailTableView: UITableView!
     
-    var movie: Result?
+    var movie: MovieResult?
     var castList: [Cast]?
     
     var isShowingMore: Bool = false

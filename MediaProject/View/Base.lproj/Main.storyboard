@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bfZ-if-z9b">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!-- -->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="TrendingViewController" title=" " id="BYZ-38-t0r" customClass="TrendingViewController" customModule="MediaProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vE0-Ug-aHV">
+                                <rect key="frame" x="0.0" y="103" width="393" height="749"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vE0-Ug-aHV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dDV-aL-CUT"/>
+                            <constraint firstAttribute="bottom" secondItem="vE0-Ug-aHV" secondAttribute="bottom" id="l2p-55-VUZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vE0-Ug-aHV" secondAttribute="trailing" id="uWq-Bn-a5Z"/>
+                            <constraint firstItem="vE0-Ug-aHV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wgA-7t-80o"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Movie" id="h3D-FB-XXM"/>
+                    <connections>
+                        <outlet property="trendingTableView" destination="vE0-Ug-aHV" id="JaN-1c-J5r"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1990.0763358778624" y="3.5211267605633805"/>
+        </scene>
+        <!--TV Show-->
+        <scene sceneID="7Jj-8m-3Ku">
+            <objects>
+                <viewController storyboardIdentifier="TVShowViewController" id="ANj-Rz-B1a" customClass="TVShowViewController" customModule="MediaProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WnU-q8-m42">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Mja-EE-dNt">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3uj-8f-TTy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Mja-EE-dNt" firstAttribute="top" secondItem="3uj-8f-TTy" secondAttribute="top" id="5qE-d5-5uB"/>
+                            <constraint firstItem="3uj-8f-TTy" firstAttribute="bottom" secondItem="Mja-EE-dNt" secondAttribute="bottom" id="Qqz-2n-uYt"/>
+                            <constraint firstItem="Mja-EE-dNt" firstAttribute="leading" secondItem="3uj-8f-TTy" secondAttribute="leading" id="sUd-uu-HPG"/>
+                            <constraint firstItem="3uj-8f-TTy" firstAttribute="trailing" secondItem="Mja-EE-dNt" secondAttribute="trailing" id="vw4-aS-6Xv"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="TV Show" id="BRC-9l-YIV"/>
+                    <connections>
+                        <outlet property="tvShowTableView" destination="Mja-EE-dNt" id="23u-FK-jpu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ctG-0N-Zf3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1990" y="707"/>
+        </scene>
+        <!--Movie-->
+        <scene sceneID="bVe-Mc-InA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="h0D-sJ-k2g" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Movie" image="theatermasks.fill" catalog="system" id="w4H-bt-HP9"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kaH-TL-BZy">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="EHr-tx-wyI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GuU-Ik-frs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1061.8320610687022" y="3.5211267605633805"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="6tp-QM-wAB">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="bfZ-if-z9b" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qYY-Be-eEi">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="h0D-sJ-k2g" kind="relationship" relationship="viewControllers" id="gsm-o1-kUk"/>
+                        <segue destination="9TC-Ze-UHM" kind="relationship" relationship="viewControllers" id="Xmj-1E-1tc"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wNN-kn-rq3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-34" y="406"/>
+        </scene>
+        <!--TV Show-->
+        <scene sceneID="CZc-21-Fvw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9TC-Ze-UHM" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="TV Show" image="sparkles.tv.fill" catalog="system" id="qu4-Cv-LiV"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZjV-JP-0GA">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ANj-Rz-B1a" kind="relationship" relationship="rootViewController" id="FhK-Sd-wza"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vii-yl-n2f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1060" y="707"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="sparkles.tv.fill" catalog="system" width="128" height="95"/>
+        <image name="theatermasks.fill" catalog="system" width="128" height="86"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
