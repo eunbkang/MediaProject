@@ -24,7 +24,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1b-li-wk5">
-                        <rect key="frame" x="8" y="192" width="122" height="20"/>
+                        <rect key="frame" x="0.0" y="192" width="138" height="20"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -34,12 +34,12 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="gfW-Qp-YmB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="10g-OT-MZh"/>
-                <constraint firstAttribute="trailing" secondItem="a1b-li-wk5" secondAttribute="trailing" constant="8" id="2M6-VV-WBn"/>
+                <constraint firstAttribute="trailing" secondItem="a1b-li-wk5" secondAttribute="trailing" id="2M6-VV-WBn"/>
                 <constraint firstAttribute="bottom" secondItem="a1b-li-wk5" secondAttribute="bottom" constant="8" id="UFX-9Y-JfA"/>
                 <constraint firstItem="gfW-Qp-YmB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="dPT-4y-gaH"/>
                 <constraint firstAttribute="trailing" secondItem="gfW-Qp-YmB" secondAttribute="trailing" id="mzc-nY-Pdb"/>
                 <constraint firstItem="a1b-li-wk5" firstAttribute="top" secondItem="gfW-Qp-YmB" secondAttribute="bottom" constant="8" id="rcG-tK-9dH"/>
-                <constraint firstItem="a1b-li-wk5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="zk4-zn-AQq"/>
+                <constraint firstItem="a1b-li-wk5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="zk4-zn-AQq"/>
             </constraints>
             <size key="customSize" width="138" height="220"/>
             <connections>

@@ -146,7 +146,8 @@ struct ProductionCountry: Codable {
 struct Season: Codable {
     let airDate: String?
     let episodeCount, id: Int
-    let name, overview, posterPath: String
+    let name, overview: String
+    let posterPath: String?
     let seasonNumber: Int?
     let voteAverage: Double
 

@@ -53,16 +53,17 @@ struct Cast: Codable {
 
 // MARK: - Crew
 struct Crew: Codable {
-    let knownForDepartment: Department
+    let knownForDepartment: Department?
     let popularity: Double
     let gender: Int
     let originalName: String
     let adult: Bool
     let creditID: String
     let id: Int
-    let name, job: String
+    let name: String
+    let job: String?
     let profilePath: String?
-    let department: String
+    let department: String?
     let character: String?
     let order: Int?
 
@@ -93,4 +94,5 @@ enum Department: String, Codable {
     case sound = "Sound"
     case visualEffects = "Visual Effects"
     case writing = "Writing"
+    case creator = "Creator"
 }

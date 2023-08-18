@@ -80,7 +80,7 @@ extension TVDetailViewController: UICollectionViewDelegate, UICollectionViewData
                 return UICollectionReusableView()
             }
             
-            view.seasonLabel.text = "Season \(indexPath.section)"
+            view.seasonLabel.text = "Season \(indexPath.section + 1)"
             
             return view
             
@@ -113,9 +113,11 @@ extension TVDetailViewController {
         let width = (UIScreen.main.bounds.width - (spacing * 3) - (inset * 2)) / 3
 
         layout.itemSize = CGSize(width: width, height: width * 1.6)
-        layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: inset, bottom: inset, right: inset)
         layout.minimumLineSpacing = spacing
         layout.minimumInteritemSpacing = spacing
+        
+        layout.headerReferenceSize = CGSize(width: 300, height: 36)
 
         tvDetailCollectionView.collectionViewLayout = layout
     }

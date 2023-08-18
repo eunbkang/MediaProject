@@ -11,6 +11,7 @@ extension URL {
     static let baseUrl = "https://api.themoviedb.org/3/"
     static let imageBaseUrl = "https://image.tmdb.org/t/p/"
     static let languageQuery = "?language=ko-KR"
+    static let youTubeBaseUrl = "https://www.youtube.com/embed/"
     
     static func makeEndPointUrl() -> String {
         return baseUrl + "trending/movie/week" + languageQuery
@@ -34,5 +35,9 @@ extension URL {
     
     static func makeCreditUrl(movieId: Int) -> String {
         return baseUrl + "movie/\(movieId)/credits" + languageQuery
+    }
+    
+    static func makeYouTubeUrl(with id: String) -> String {
+        return youTubeBaseUrl + id
     }
 }

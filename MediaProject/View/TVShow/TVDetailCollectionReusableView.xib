@@ -19,7 +19,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="rvu-Ff-hWq"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>

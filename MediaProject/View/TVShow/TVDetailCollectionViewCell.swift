@@ -17,6 +17,8 @@ class TVDetailCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         stillImageView.contentMode = .scaleAspectFill
+        stillImageView.layer.cornerRadius = 12
+        stillImageView.clipsToBounds = true
     }
     
     func configData(row: Episode) {
