@@ -16,8 +16,6 @@ class CastTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.selectionStyle = .none
-        
         configCollectionView()
         configCollectionViewLayout()
     }

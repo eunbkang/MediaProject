@@ -11,12 +11,16 @@ enum MovieDetailSection: Int, CaseIterable {
     case poster
     case overview
     case cast
+    case video
+    case similar
     
     var header: String {
         switch self {
         case .poster: return ""
         case .overview: return "OverView"
         case .cast: return "Cast"
+        case .video: return "Video"
+        case .similar: return "Similar Movies"
         }
     }
 }

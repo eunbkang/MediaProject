@@ -19,20 +19,10 @@ class MovieDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let posterCellNib = UINib(nibName: DetailPosterTableViewCell.identifier, bundle: nil)
-        let overviewCellNib = UINib(nibName: OverViewTableViewCell.identifier, bundle: nil)
-        let castCellNib = UINib(nibName: CastTableViewCell.identifier, bundle: nil)
-        movieDetailTableView.register(posterCellNib, forCellReuseIdentifier: DetailPosterTableViewCell.identifier)
-        movieDetailTableView.register(overviewCellNib, forCellReuseIdentifier: OverViewTableViewCell.identifier)
-        movieDetailTableView.register(castCellNib, forCellReuseIdentifier: CastTableViewCell.identifier)
-        
-        movieDetailTableView.delegate = self
-        movieDetailTableView.dataSource = self
-        movieDetailTableView.rowHeight = UITableView.automaticDimension
-        movieDetailTableView.estimatedRowHeight = 100
         
         configUI()
+        configTableView()
+        
         callRequest()
     }
     
@@ -50,23 +40,17 @@ class MovieDetailViewController: UIViewController {
 
 extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return MovieDetailSection.allCases.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case MovieDetailSection.poster.rawValue:
-            return 1
-            
-        case MovieDetailSection.overview.rawValue:
-            return 1
-            
-        case MovieDetailSection.cast.rawValue:
-//            return castList?.count ?? 0
-            return 1
-            
-        default:
-            return 0
+        case MovieDetailSection.poster.rawValue: return 1
+        case MovieDetailSection.overview.rawValue: return 1
+        case MovieDetailSection.cast.rawValue: return 1
+        case MovieDetailSection.video.rawValue: return 1
+        case MovieDetailSection.similar.rawValue: return 1
+        default: return 0
         }
     }
     
@@ -97,17 +81,36 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             
             return cell
             
+        case MovieDetailSection.video.rawValue:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: VideoTableViewCell.identifier) as? VideoTableViewCell else { return UITableViewCell() }
+            
+            return cell
+            
+        case MovieDetailSection.similar.rawValue:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SimilarTableViewCell.identifier) as? SimilarTableViewCell else { return UITableViewCell() }
+            
+            return cell
+            
         default:
             return UITableViewCell()
         }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == MovieDetailSection.overview.rawValue {
+        switch section {
+        case MovieDetailSection.overview.rawValue:
             return MovieDetailSection.overview.header
-        } else if section == MovieDetailSection.cast.rawValue {
+            
+        case MovieDetailSection.cast.rawValue:
             return MovieDetailSection.cast.header
-        } else {
+            
+        case MovieDetailSection.video.rawValue:
+            return MovieDetailSection.video.header
+            
+        case MovieDetailSection.similar.rawValue:
+            return MovieDetailSection.similar.header
+            
+        default:
             return nil
         }
     }
@@ -130,5 +133,23 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
 extension MovieDetailViewController {
     func configUI() {
         title = "출연/제작"
+    }
+    
+    func configTableView() {
+        let posterCellNib = UINib(nibName: DetailPosterTableViewCell.identifier, bundle: nil)
+        let overviewCellNib = UINib(nibName: OverViewTableViewCell.identifier, bundle: nil)
+        let castCellNib = UINib(nibName: CastTableViewCell.identifier, bundle: nil)
+        let videoCellNib = UINib(nibName: VideoTableViewCell.identifier, bundle: nil)
+        let similarCellNib = UINib(nibName: SimilarTableViewCell.identifier, bundle: nil)
+        movieDetailTableView.register(posterCellNib, forCellReuseIdentifier: DetailPosterTableViewCell.identifier)
+        movieDetailTableView.register(overviewCellNib, forCellReuseIdentifier: OverViewTableViewCell.identifier)
+        movieDetailTableView.register(castCellNib, forCellReuseIdentifier: CastTableViewCell.identifier)
+        movieDetailTableView.register(videoCellNib, forCellReuseIdentifier: VideoTableViewCell.identifier)
+        movieDetailTableView.register(similarCellNib, forCellReuseIdentifier: SimilarTableViewCell.identifier)
+        
+        movieDetailTableView.delegate = self
+        movieDetailTableView.dataSource = self
+        movieDetailTableView.rowHeight = UITableView.automaticDimension
+        movieDetailTableView.estimatedRowHeight = 100
     }
 }

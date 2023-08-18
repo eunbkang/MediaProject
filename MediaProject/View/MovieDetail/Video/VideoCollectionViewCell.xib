@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VideoCollectionViewCell" id="gTV-IL-0wX" customClass="VideoCollectionViewCell" customModule="MediaProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="215" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="215" height="150"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ieq-3p-URK">
+                        <rect key="frame" x="0.0" y="0.0" width="215" height="121"/>
+                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Ieq-3p-URK" secondAttribute="height" multiplier="16:9" id="bYC-fK-iRE"/>
+                        </constraints>
+                        <wkWebViewConfiguration key="configuration">
+                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                            <wkPreferences key="preferences"/>
+                        </wkWebViewConfiguration>
+                    </wkWebView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWp-ki-QSM">
+                        <rect key="frame" x="0.0" y="125.00000000000001" width="215" height="15.666666666666671"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="XWp-ki-QSM" secondAttribute="trailing" id="3fj-ia-qDI"/>
+                <constraint firstItem="XWp-ki-QSM" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="F4t-UY-54T"/>
+                <constraint firstItem="XWp-ki-QSM" firstAttribute="top" secondItem="Ieq-3p-URK" secondAttribute="bottom" constant="4" id="FmG-8j-ywH"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="XWp-ki-QSM" secondAttribute="bottom" constant="2" id="ImU-n9-Vxb"/>
+                <constraint firstItem="Ieq-3p-URK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Ioe-Qq-JZx"/>
+                <constraint firstAttribute="trailing" secondItem="Ieq-3p-URK" secondAttribute="trailing" id="MyH-fu-StD"/>
+                <constraint firstItem="Ieq-3p-URK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Ygr-GF-p2O"/>
+            </constraints>
+            <size key="customSize" width="215" height="150"/>
+            <connections>
+                <outlet property="titleLabel" destination="XWp-ki-QSM" id="eEc-5E-MDJ"/>
+                <outlet property="videoWebView" destination="Ieq-3p-URK" id="v0X-cE-j0G"/>
+            </connections>
+            <point key="canvasLocation" x="232.82442748091603" y="54.929577464788736"/>
+        </collectionViewCell>
+    </objects>
+</document>
