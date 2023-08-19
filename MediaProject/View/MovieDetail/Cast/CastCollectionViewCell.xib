@@ -33,7 +33,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8U-oP-gRg">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8U-oP-gRg">
                                 <rect key="frame" x="0.0" y="15.333333333333314" width="92" height="13.333333333333336"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" systemColor="systemGrayColor"/>
@@ -47,7 +47,7 @@
             <constraints>
                 <constraint firstItem="wve-z8-27c" firstAttribute="top" secondItem="6dn-3y-lGU" secondAttribute="bottom" constant="4" id="0DI-wo-8TC"/>
                 <constraint firstItem="6dn-3y-lGU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="1JC-7L-lrD"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wve-z8-27c" secondAttribute="bottom" constant="4" id="3rA-Gz-rP7"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wve-z8-27c" secondAttribute="bottom" id="3rA-Gz-rP7"/>
                 <constraint firstItem="wve-z8-27c" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="Fdp-ob-olG"/>
                 <constraint firstAttribute="trailing" secondItem="6dn-3y-lGU" secondAttribute="trailing" id="Z7b-jN-0OY"/>
                 <constraint firstAttribute="trailing" secondItem="wve-z8-27c" secondAttribute="trailing" constant="4" id="mcg-a1-K3s"/>

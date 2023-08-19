@@ -11,7 +11,11 @@ class SimilarTableViewCell: UITableViewCell {
 
     @IBOutlet var similarCollectionView: UICollectionView!
     
-    var movieList: [MovieResult]?
+    var movieList: [MovieResult]? {
+        didSet {
+            similarCollectionView.reloadData()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

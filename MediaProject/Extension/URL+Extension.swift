@@ -38,7 +38,7 @@ extension URL {
     }
     
     static func makeMovieVideoUrl(movieId: Int) -> String {
-        return baseUrl + "movie/\(movieId)/videos"
+        return baseUrl + "movie/\(movieId)/videos" + languageQuery
     }
     
     static func makeYouTubeUrl(with id: String) -> String {
@@ -46,6 +46,6 @@ extension URL {
     }
     
     static func makeSimilarMovieUrl(movieId: Int) -> String {
-        return baseUrl + "movie/\(movieId)/similar"
+        return baseUrl + "movie/\(movieId)/similar" + languageQuery
     }
 }

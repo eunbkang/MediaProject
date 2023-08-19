@@ -36,26 +36,22 @@ class MovieDetailViewController: UIViewController {
         group.enter()
         TMDBManager.shared.callCreditRequest(movieId: movieId) { resultList in
             self.castList = resultList
-            print("=====cast=====")
             group.leave()
         }
         
         group.enter()
         TMDBManager.shared.callMovieVideoRequest(movieId: movieId) { resultList in
             self.videoList = resultList
-            print("=====video=====")
             group.leave()
         }
         
         group.enter()
         TMDBManager.shared.callSimilarMovieRequest(movieId: movieId) { resultList in
             self.similarMovieList = resultList
-            print("=====similar=====")
             group.leave()
         }
         
         group.notify(queue: .main) {
-            print("==========END=================")
             self.movieDetailTableView.reloadData()
         }
     }
