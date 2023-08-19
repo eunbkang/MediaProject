@@ -31,19 +31,32 @@ class MovieDetailViewController: UIViewController {
     func callRequest() {
         guard let movieId = movie?.id else { return }
         
+        let group = DispatchGroup()
+        
+        group.enter()
         TMDBManager.shared.callCreditRequest(movieId: movieId) { resultList in
             self.castList = resultList
-            self.movieDetailTableView.reloadSections([MovieDetailSection.cast.rawValue], with: .automatic)
+            print("=====cast=====")
+            group.leave()
         }
         
+        group.enter()
         TMDBManager.shared.callMovieVideoRequest(movieId: movieId) { resultList in
             self.videoList = resultList
-            self.movieDetailTableView.reloadSections([MovieDetailSection.video.rawValue], with: .automatic)
+            print("=====video=====")
+            group.leave()
         }
         
+        group.enter()
         TMDBManager.shared.callSimilarMovieRequest(movieId: movieId) { resultList in
             self.similarMovieList = resultList
-            self.movieDetailTableView.reloadSections([MovieDetailSection.similar.rawValue], with: .automatic)
+            print("=====similar=====")
+            group.leave()
+        }
+        
+        group.notify(queue: .main) {
+            print("==========END=================")
+            self.movieDetailTableView.reloadData()
         }
     }
 }
@@ -166,6 +179,5 @@ extension MovieDetailViewController {
         movieDetailTableView.delegate = self
         movieDetailTableView.dataSource = self
         movieDetailTableView.rowHeight = UITableView.automaticDimension
-//        movieDetailTableView.estimatedRowHeight = 180
     }
 }

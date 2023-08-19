@@ -11,7 +11,11 @@ class CastTableViewCell: UITableViewCell {
     
     @IBOutlet var castCollectionView: UICollectionView!
     
-    var castList: [Cast]?
+    var castList: [Cast]? {
+        didSet {
+            castCollectionView.reloadData()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

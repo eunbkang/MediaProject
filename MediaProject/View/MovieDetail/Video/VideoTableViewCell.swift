@@ -11,7 +11,11 @@ class VideoTableViewCell: UITableViewCell {
 
     @IBOutlet var videoCollectionView: UICollectionView!
     
-    var videoList: [Video]?
+    var videoList: [Video]? {
+        didSet {
+            videoCollectionView.reloadData()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
