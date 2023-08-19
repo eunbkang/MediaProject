@@ -39,12 +39,6 @@ class TVDetailViewController: UIViewController {
         
         for seasonNo in 1...numberOfSeasons {
             TMDBManager.shared.callTVSeasonRequest(seriesId: seriesId, seasonNo: seasonNo) { data in
-                print(seriesId, seasonNo)
-//                guard let episodes = data.episodes else {
-//                    print("no episodes")
-//                    return
-//                }
-                
                 self.tvSeason.append(data.episodes)
                 self.tvDetailCollectionView.reloadData()
             }

@@ -14,6 +14,7 @@ class MovieDetailViewController: UIViewController {
     
     var movie: MovieResult?
     var castList: [Cast]?
+    var videoList: [Video]?
     var similarMovieList: [MovieResult]?
     
     var isShowingMore: Bool = false
@@ -33,6 +34,11 @@ class MovieDetailViewController: UIViewController {
         TMDBManager.shared.callCreditRequest(movieId: movieId) { resultList in
             self.castList = resultList
             self.movieDetailTableView.reloadSections([MovieDetailSection.cast.rawValue], with: .automatic)
+        }
+        
+        TMDBManager.shared.callMovieVideoRequest(movieId: movieId) { resultList in
+            self.videoList = resultList
+            self.movieDetailTableView.reloadSections([MovieDetailSection.video.rawValue], with: .automatic)
         }
         
         TMDBManager.shared.callSimilarMovieRequest(movieId: movieId) { resultList in
@@ -89,6 +95,8 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             
         case MovieDetailSection.video.rawValue:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: VideoTableViewCell.identifier) as? VideoTableViewCell else { return UITableViewCell() }
+            
+            cell.videoList = videoList
             
             return cell
             
@@ -158,6 +166,6 @@ extension MovieDetailViewController {
         movieDetailTableView.delegate = self
         movieDetailTableView.dataSource = self
         movieDetailTableView.rowHeight = UITableView.automaticDimension
-        movieDetailTableView.estimatedRowHeight = 100
+//        movieDetailTableView.estimatedRowHeight = 180
     }
 }

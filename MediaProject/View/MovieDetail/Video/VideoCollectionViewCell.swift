@@ -16,9 +16,17 @@ class VideoCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.backgroundColor = .systemTeal
-        
         videoWebView.contentMode = .scaleAspectFit
+        titleLabel.numberOfLines = 2
+        titleLabel.contentMode = .top
+        titleLabel.textAlignment = .left
+    }
+    
+    func configData(video: Video) {
+        titleLabel.text = video.name
+        
+        guard let url = URL(string: URL.makeYouTubeUrl(with: video.key)) else { return }
+        videoWebView.load(URLRequest(url: url))
     }
 
 }

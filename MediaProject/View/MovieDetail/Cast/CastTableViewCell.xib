@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Gdr-ul-fiU">
-                        <rect key="frame" x="0.0" y="4" width="320" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="208"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="180" id="Bt6-at-Is7"/>
@@ -35,8 +35,8 @@
                 <constraints>
                     <constraint firstItem="Gdr-ul-fiU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="4TW-RS-zQW"/>
                     <constraint firstAttribute="trailing" secondItem="Gdr-ul-fiU" secondAttribute="trailing" id="ITA-VF-kvP"/>
-                    <constraint firstAttribute="bottom" secondItem="Gdr-ul-fiU" secondAttribute="bottom" constant="4" id="P3m-Er-wWv"/>
-                    <constraint firstItem="Gdr-ul-fiU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="rdL-fx-NAz"/>
+                    <constraint firstAttribute="bottom" secondItem="Gdr-ul-fiU" secondAttribute="bottom" id="P3m-Er-wWv"/>
+                    <constraint firstItem="Gdr-ul-fiU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="rdL-fx-NAz"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

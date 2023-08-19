@@ -84,9 +84,22 @@ class TMDBManager {
             .responseDecodable(of: TVSeason.self) { response in
                 switch response.result {
                 case .success(let value):
-                    print(value)
-                    print(value.episodes)
                     completion(value)
+                    
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
+    
+    func callMovieVideoRequest(movieId: Int, completion: @escaping ([Video]) -> ()) {
+        let url = URL.makeMovieVideoUrl(movieId: movieId)
+        
+        AF.request(url, method: .get, headers: header).validate()
+            .responseDecodable(of: MovieVideos.self) { response in
+                switch response.result {
+                case .success(let value):
+                    completion(value.results)
                     
                 case .failure(let error):
                     print(error)
@@ -101,7 +114,6 @@ class TMDBManager {
             .responseDecodable(of: SimilarMovies.self) { response in
                 switch response.result {
                 case .success(let value):
-                    print(value.results)
                     completion(value.results)
                     
                 case .failure(let error):

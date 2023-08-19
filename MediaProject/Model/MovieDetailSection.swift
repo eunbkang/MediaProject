@@ -19,7 +19,7 @@ enum MovieDetailSection: Int, CaseIterable {
         case .poster: return ""
         case .overview: return "OverView"
         case .cast: return "Cast"
-        case .video: return "Video"
+        case .video: return "Videos"
         case .similar: return "Similar Movies"
         }
     }

@@ -37,6 +37,10 @@ extension URL {
         return baseUrl + "movie/\(movieId)/credits" + languageQuery
     }
     
+    static func makeMovieVideoUrl(movieId: Int) -> String {
+        return baseUrl + "movie/\(movieId)/videos"
+    }
+    
     static func makeYouTubeUrl(with id: String) -> String {
         return youTubeBaseUrl + id
     }
