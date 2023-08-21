@@ -22,7 +22,6 @@ struct TVDetail: Codable {
     let lastAirDate: String
     let lastEpisodeToAir, nextEpisodeToAir: LastEpisodeToAir?
     let name: String
-//    let nextEpisodeToAir: JSONNull?
     let networks: [Network]
     let numberOfEpisodes, numberOfSeasons: Int
     let originCountry: [String]

@@ -18,7 +18,7 @@ struct Video: Codable {
     let iso639_1: String
     let iso3166_1: String
     let name, key: String
-    let site: Site
+    let site: String
     let size: Int
     let type: String
     let official: Bool
@@ -31,8 +31,4 @@ struct Video: Codable {
         case publishedAt = "published_at"
         case id
     }
-}
-
-enum Site: String, Codable {
-    case youTube = "YouTube"
 }
