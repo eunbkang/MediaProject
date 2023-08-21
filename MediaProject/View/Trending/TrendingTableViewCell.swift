@@ -14,6 +14,7 @@ class TrendingTableViewCell: UITableViewCell {
     @IBOutlet var cardBackView: UIView!
     
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var originalTitleLabel: UILabel!
     @IBOutlet var releaseDateLabel: UILabel!
     @IBOutlet var genreLabel: UILabel!
     @IBOutlet var rateLabel: UILabel!
@@ -33,6 +34,7 @@ class TrendingTableViewCell: UITableViewCell {
     
     func configMovieToView(movie: MovieResult) {
         titleLabel.text = movie.title
+        originalTitleLabel.text = movie.originalTitle
         releaseDateLabel.text = movie.releaseDate
         rateLabel.text = String(format: "%.1f", movie.voteAverage)
         genreLabel.text = movie.genres
@@ -44,6 +46,7 @@ class TrendingTableViewCell: UITableViewCell {
     
     func configTVShowToView(tv: TVResult) {
         titleLabel.text = tv.name
+        originalTitleLabel.text = tv.originalName
         releaseDateLabel.text = tv.firstAirDate
         rateLabel.text = String(format: "%.1f", tv.voteAverage)
         genreLabel.text = tv.genres
