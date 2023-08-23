@@ -46,6 +46,7 @@ class TrendingViewController: UIViewController {
     
     @objc func tappedMapButton() {
         let vc = TheaterMapViewController()
+        vc.modalPresentationStyle = .fullScreen
         
         present(vc, animated: true)
     }

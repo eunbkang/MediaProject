@@ -53,6 +53,8 @@
 		7E6528692A8FBF2E004F466B /* SimilarMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6528682A8FBF2E004F466B /* SimilarMovies.swift */; };
 		7E65286B2A9052B4004F466B /* MovieVideos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E65286A2A9052B4004F466B /* MovieVideos.swift */; };
 		7E6528A12A95D0DE004F466B /* TheaterMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6528A02A95D0DE004F466B /* TheaterMapViewController.swift */; };
+		7E6528A52A95E5A0004F466B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7E6528A42A95E5A0004F466B /* SnapKit */; };
+		7E6528A72A95ED0D004F466B /* Theater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6528A62A95ED0D004F466B /* Theater.swift */; };
 		7EA0A8AF2A87BB8100CD10ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0A8AE2A87BB8100CD10ED /* AppDelegate.swift */; };
 		7EA0A8B12A87BB8100CD10ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0A8B02A87BB8100CD10ED /* SceneDelegate.swift */; };
 		7EA0A8B32A87BB8100CD10ED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0A8B22A87BB8100CD10ED /* ViewController.swift */; };
@@ -105,6 +107,7 @@
 		7E6528682A8FBF2E004F466B /* SimilarMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMovies.swift; sourceTree = "<group>"; };
 		7E65286A2A9052B4004F466B /* MovieVideos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVideos.swift; sourceTree = "<group>"; };
 		7E6528A02A95D0DE004F466B /* TheaterMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterMapViewController.swift; sourceTree = "<group>"; };
+		7E6528A62A95ED0D004F466B /* Theater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theater.swift; sourceTree = "<group>"; };
 		7EA0A8AB2A87BB8100CD10ED /* MediaProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediaProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA0A8AE2A87BB8100CD10ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EA0A8B02A87BB8100CD10ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E0A6D072A887AE80004F25A /* Kingfisher in Frameworks */,
+				7E6528A52A95E5A0004F466B /* SnapKit in Frameworks */,
 				7E0A6D012A887AD50004F25A /* SwiftyJSON in Frameworks */,
 				7E0A6D042A887AE00004F25A /* Alamofire in Frameworks */,
 			);
@@ -149,6 +153,7 @@
 				7E65282D2A8DDD13004F466B /* TVSeason.swift */,
 				7E6528682A8FBF2E004F466B /* SimilarMovies.swift */,
 				7E65286A2A9052B4004F466B /* MovieVideos.swift */,
+				7E6528A62A95ED0D004F466B /* Theater.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 				7E0A6D002A887AD50004F25A /* SwiftyJSON */,
 				7E0A6D032A887AE00004F25A /* Alamofire */,
 				7E0A6D062A887AE80004F25A /* Kingfisher */,
+				7E6528A42A95E5A0004F466B /* SnapKit */,
 			);
 			productName = MediaProject;
 			productReference = 7EA0A8AB2A87BB8100CD10ED /* MediaProject.app */;
@@ -367,6 +373,7 @@
 				7E0A6CFF2A887AD50004F25A /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				7E0A6D022A887AE00004F25A /* XCRemoteSwiftPackageReference "Alamofire" */,
 				7E0A6D052A887AE80004F25A /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				7E6528A32A95E5A0004F466B /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 7EA0A8AC2A87BB8100CD10ED /* Products */;
 			projectDirPath = "";
@@ -418,6 +425,7 @@
 				7E65282C2A8DDA5F004F466B /* TVDetail.swift in Sources */,
 				7E6527D52A887C9F004F466B /* UIView+Extension.swift in Sources */,
 				7E6528662A8FB604004F466B /* SimilarTableViewCell.swift in Sources */,
+				7E6528A72A95ED0D004F466B /* Theater.swift in Sources */,
 				7E6528012A8A08BB004F466B /* Trending.swift in Sources */,
 				7E65285E2A8FB2ED004F466B /* SimilarCollectionViewCell.swift in Sources */,
 				7E65282E2A8DDD13004F466B /* TVSeason.swift in Sources */,
@@ -692,6 +700,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		7E6528A32A95E5A0004F466B /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -709,6 +725,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7E0A6D052A887AE80004F25A /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		7E6528A42A95E5A0004F466B /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E6528A32A95E5A0004F466B /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
