@@ -23,9 +23,12 @@ class TheaterMapViewController: UIViewController {
     
     let defaultLocation = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
     
+    var annotationList: [MKPointAnnotation] = []
+    
     lazy var closeButton: UIButton = {
         let button = UIButton()
         self.configButton(button, image: "xmark", imageSize: buttonImageSize)
+        button.addTarget(self, action: #selector(tappedCloseButton), for: .touchUpInside)
         
         return button
     }()
@@ -33,8 +36,27 @@ class TheaterMapViewController: UIViewController {
     lazy var currentLocationButton: UIButton = {
         let button = UIButton()
         self.configButton(button, image: "location", imageSize: buttonImageSize)
+        button.addTarget(self, action: #selector(tappedCurrentLocationButton), for: .touchUpInside)
         
         return button
+    }()
+    
+    lazy var filterButton: UIButton = {
+        let button = UIButton()
+        self.configButton(button, image: "square.3.layers.3d", imageSize: buttonImageSize)
+        button.addTarget(self, action: #selector(tappedFilterButton), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    lazy var topRightStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [currentLocationButton, filterButton])
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.spacing = 8
+        
+        return stackView
     }()
     
     // MARK: - LifeCycle
@@ -52,6 +74,7 @@ class TheaterMapViewController: UIViewController {
         checkDeviceLocationAuthorization()
         
         setRegion(center: defaultLocation)
+        makeAllAnnotationList()
     }
     
     // MARK: - Actions
@@ -61,15 +84,67 @@ class TheaterMapViewController: UIViewController {
     }
     
     @objc func tappedCurrentLocationButton() {
-        locationManager.startUpdatingLocation()
+        checkDeviceLocationAuthorization()
+    }
+    
+    @objc func tappedFilterButton() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let megabox = UIAlertAction(title: "메가박스", style: .default) { _ in
+            self.makeFilteredAnnotationList(type: .megabox)
+        }
+        let lotte = UIAlertAction(title: "롯데시네마", style: .default) { _ in
+            self.makeFilteredAnnotationList(type: .lotte)
+        }
+        let cgv = UIAlertAction(title: "CGV", style: .default) { _ in
+            self.makeFilteredAnnotationList(type: .cgv)
+        }
+        let allTheater = UIAlertAction(title: "전체보기", style: .default) { _ in
+            self.makeAllAnnotationList()
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        
+        for action in [megabox, lotte, cgv, allTheater, cancel] {
+            actionSheet.addAction(action)
+        }
+        
+        present(actionSheet, animated: true)
     }
     
     // MARK: - Helpers
     
+    func setAnnotations() {
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.addAnnotations(annotationList)
+    }
+    
     func setRegion(center: CLLocationCoordinate2D) {
-        let region = MKCoordinateRegion(center: center, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        let region = MKCoordinateRegion(center: center, latitudinalMeters: 5000, longitudinalMeters: 5000)
             
         mapView.setRegion(region, animated: true)
+    }
+    
+    func makeAllAnnotationList() {
+        annotationList.removeAll()
+        
+        for item in theaterList {
+            let annotation = convertTheaterToAnnotation(theater: item)
+            annotationList.append(annotation)
+        }
+        
+        setAnnotations()
+    }
+    
+    func makeFilteredAnnotationList(type: TheaterType) {
+        annotationList.removeAll()
+        
+        for item in theaterList {
+            if item.type == type {
+                let annotation = convertTheaterToAnnotation(theater: item)
+                annotationList.append(annotation)
+            }
+        }
+        
+        setAnnotations()
     }
     
     func convertTheaterToAnnotation(theater: Theater) -> MKPointAnnotation {
@@ -172,7 +247,7 @@ extension TheaterMapViewController: MKMapViewDelegate {
 
 extension TheaterMapViewController {
     func configLayoutConstraints() {
-        let viewList = [mapView, closeButton, currentLocationButton]
+        let viewList = [mapView, closeButton, topRightStackView]
         for item in viewList {
             view.addSubview(item)
         }
@@ -182,13 +257,11 @@ extension TheaterMapViewController {
             make.top.equalTo(view.safeAreaLayoutGuide)
         }
         
-        closeButton.addTarget(self, action: #selector(tappedCloseButton), for: .touchUpInside)
         closeButton.snp.makeConstraints { make in
             make.top.leading.equalTo(mapView).offset(8)
         }
         
-        currentLocationButton.addTarget(self, action: #selector(tappedCurrentLocationButton), for: .touchUpInside)
-        currentLocationButton.snp.makeConstraints { make in
+        topRightStackView.snp.makeConstraints { make in
             make.top.trailing.equalTo(mapView).inset(8)
         }
     }
