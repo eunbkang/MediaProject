@@ -10,13 +10,26 @@ import Alamofire
 
 class TrendingViewController: UIViewController {
 
+    // MARK: - Properties
+    
     @IBOutlet var trendingTableView: UITableView!
+    
+    lazy var mapButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(systemName: "map"), style: .plain, target: self, action: #selector(tappedMapButton))
+        button.tintColor = .black
+        
+        return button
+    }()
     
     var movieList: [MovieResult] = []
     var page = 1
     
+    // MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = mapButton
         
         let trendingTableViewCellNib = UINib(nibName: TrendingTableViewCell.identifier, bundle: nil)
         trendingTableView.register(trendingTableViewCellNib, forCellReuseIdentifier: TrendingTableViewCell.identifier)
@@ -28,6 +41,16 @@ class TrendingViewController: UIViewController {
         configTableView()
         callRequest(page: page)
     }
+    
+    // MARK: - Action
+    
+    @objc func tappedMapButton() {
+        let vc = TheaterMapViewController()
+        
+        present(vc, animated: true)
+    }
+    
+    // MARK: - Helper
     
     func callRequest(page: Int) {
         TMDBManager.shared.callTrendingRequest(page: page) { resultList in
