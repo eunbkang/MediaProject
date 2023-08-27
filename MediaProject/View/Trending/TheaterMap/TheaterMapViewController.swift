@@ -74,7 +74,7 @@ class TheaterMapViewController: UIViewController {
         checkDeviceLocationAuthorization()
         
         setRegion(center: defaultLocation)
-        makeAllAnnotationList()
+        makeAnnotationList(type: .all)
     }
     
     // MARK: - Actions
@@ -90,16 +90,16 @@ class TheaterMapViewController: UIViewController {
     @objc func tappedFilterButton() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let megabox = UIAlertAction(title: "메가박스", style: .default) { _ in
-            self.makeFilteredAnnotationList(type: .megabox)
+            self.makeAnnotationList(type: .megabox)
         }
         let lotte = UIAlertAction(title: "롯데시네마", style: .default) { _ in
-            self.makeFilteredAnnotationList(type: .lotte)
+            self.makeAnnotationList(type: .lotte)
         }
         let cgv = UIAlertAction(title: "CGV", style: .default) { _ in
-            self.makeFilteredAnnotationList(type: .cgv)
+            self.makeAnnotationList(type: .cgv)
         }
         let allTheater = UIAlertAction(title: "전체보기", style: .default) { _ in
-            self.makeAllAnnotationList()
+            self.makeAnnotationList(type: .all)
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         
@@ -123,25 +123,14 @@ class TheaterMapViewController: UIViewController {
         mapView.setRegion(region, animated: true)
     }
     
-    func makeAllAnnotationList() {
+    func makeAnnotationList(type: TheaterType) {
         annotationList.removeAll()
         
-        for item in theaterList {
+        let filteredList = type == .all ? theaterList : theaterList.filter { $0.type == type }
+        
+        for item in filteredList {
             let annotation = convertTheaterToAnnotation(theater: item)
             annotationList.append(annotation)
-        }
-        
-        setAnnotations()
-    }
-    
-    func makeFilteredAnnotationList(type: TheaterType) {
-        annotationList.removeAll()
-        
-        for item in theaterList {
-            if item.type == type {
-                let annotation = convertTheaterToAnnotation(theater: item)
-                annotationList.append(annotation)
-            }
         }
         
         setAnnotations()

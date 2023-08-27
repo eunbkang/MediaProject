@@ -29,4 +29,5 @@ enum TheaterType {
     case lotte
     case megabox
     case cgv
+    case all
 }
