@@ -22,6 +22,12 @@ class DetailPosterTableViewCell: UITableViewCell {
         
         titleLabel.textColor = .white
         titleLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        titleLabel.layer.shadowColor = UIColor.black.cgColor
+        titleLabel.layer.shadowOpacity = 0.9
+        titleLabel.layer.shadowRadius = 4
+        titleLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
+        titleLabel.layer.masksToBounds = false
+        titleLabel.clipsToBounds = false
     }
 
     func configData(row: MovieResult) {
