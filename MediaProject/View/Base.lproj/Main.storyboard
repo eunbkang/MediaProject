@@ -90,12 +90,13 @@
             </objects>
             <point key="canvasLocation" x="1061.8320610687022" y="3.5211267605633805"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="6tp-QM-wAB">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="bfZ-if-z9b" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="bfZ-if-z9b" customClass="MainTabBarController" customModule="MediaProject" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qYY-Be-eEi">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

@@ -58,6 +58,8 @@
 		7E6528D42A9B6BC1004F466B /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6528D32A9B6BC1004F466B /* OnboardingPageViewController.swift */; };
 		7E6528D62A9B6BE7004F466B /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6528D52A9B6BE7004F466B /* OnboardingViewController.swift */; };
 		7E6528D82A9B6F47004F466B /* IntroScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6528D72A9B6F47004F466B /* IntroScene.swift */; };
+		7E6528DB2A9B8E53004F466B /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6528DA2A9B8E53004F466B /* UserDefaultsManager.swift */; };
+		7E6528DD2A9B903D004F466B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6528DC2A9B903D004F466B /* MainTabBarController.swift */; };
 		7EA0A8AF2A87BB8100CD10ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0A8AE2A87BB8100CD10ED /* AppDelegate.swift */; };
 		7EA0A8B12A87BB8100CD10ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0A8B02A87BB8100CD10ED /* SceneDelegate.swift */; };
 		7EA0A8B32A87BB8100CD10ED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0A8B22A87BB8100CD10ED /* ViewController.swift */; };
@@ -114,6 +116,8 @@
 		7E6528D32A9B6BC1004F466B /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
 		7E6528D52A9B6BE7004F466B /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		7E6528D72A9B6F47004F466B /* IntroScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroScene.swift; sourceTree = "<group>"; };
+		7E6528DA2A9B8E53004F466B /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		7E6528DC2A9B903D004F466B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		7EA0A8AB2A87BB8100CD10ED /* MediaProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediaProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA0A8AE2A87BB8100CD10ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EA0A8B02A87BB8100CD10ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -224,8 +228,9 @@
 		7E65281A2A8D1E38004F466B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7E6528D22A9B6B99004F466B /* Onboarding */,
 				7EA0A8B42A87BB8100CD10ED /* Main.storyboard */,
+				7E6528DC2A9B903D004F466B /* MainTabBarController.swift */,
+				7E6528D22A9B6B99004F466B /* Onboarding */,
 				7E6527CF2A887C35004F466B /* Trending */,
 				7E6527E42A888F3D004F466B /* MovieDetail */,
 				7E6528192A8D1E22004F466B /* TVShow */,
@@ -301,6 +306,14 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		7E6528D92A9B8E42004F466B /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				7E6528DA2A9B8E53004F466B /* UserDefaultsManager.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		7EA0A8A22A87BB8100CD10ED = {
 			isa = PBXGroup;
 			children = (
@@ -320,6 +333,7 @@
 		7EA0A8AD2A87BB8100CD10ED /* MediaProject */ = {
 			isa = PBXGroup;
 			children = (
+				7E6528D92A9B8E42004F466B /* Utility */,
 				7E6527EB2A8896C9004F466B /* Protocol */,
 				7E6527CE2A887C2C004F466B /* Network */,
 				7E6527CC2A887C1F004F466B /* Extension */,
@@ -464,6 +478,8 @@
 				7E6527F72A889923004F466B /* MovieDetailViewController.swift in Sources */,
 				7E65281C2A8D1E7A004F466B /* TVShowViewController.swift in Sources */,
 				7E65283F2A8DFEC2004F466B /* TVDetailViewController.swift in Sources */,
+				7E6528DB2A9B8E53004F466B /* UserDefaultsManager.swift in Sources */,
+				7E6528DD2A9B903D004F466B /* MainTabBarController.swift in Sources */,
 				7E6527F92A8899BB004F466B /* MovieDetailSection.swift in Sources */,
 				7EA0A8B12A87BB8100CD10ED /* SceneDelegate.swift in Sources */,
 				7E6528D62A9B6BE7004F466B /* OnboardingViewController.swift in Sources */,

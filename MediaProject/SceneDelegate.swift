@@ -16,9 +16,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
 
-        let vc = OnboardingPageViewController()
+        let isOnboardingCompleted = UserDefaultsManager.shared.isOnboardingCompleted
+        
+        if isOnboardingCompleted {
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            guard let vc = sb.instantiateViewController(withIdentifier: MainTabBarController.identifier) as? MainTabBarController else { return }
+            
+            window?.rootViewController = vc
+            
+        } else {
+            let onboardingVC = OnboardingPageViewController()
 
-        window?.rootViewController = vc
+            window?.rootViewController = onboardingVC
+        }
         window?.makeKeyAndVisible()
     }
 

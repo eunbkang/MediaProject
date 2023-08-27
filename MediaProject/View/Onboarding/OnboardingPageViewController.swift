@@ -28,6 +28,8 @@ class OnboardingPageViewController: UIPageViewController {
         dataSource = self
         
         setViewControllers([createOnboardingVC(index: 0)], direction: .forward, animated: true)
+        
+        setPageControlColor()
     }
     
     // MARK: - Helpers
@@ -37,6 +39,11 @@ class OnboardingPageViewController: UIPageViewController {
         vc.introNumber = IntroScene(rawValue: index)
         
         return vc
+    }
+    
+    func setPageControlColor() {
+        UIPageControl.appearance(whenContainedInInstancesOf: [OnboardingPageViewController.self]).currentPageIndicatorTintColor = .darkGray
+        UIPageControl.appearance(whenContainedInInstancesOf: [OnboardingPageViewController.self]).pageIndicatorTintColor = .systemGray4
     }
 }
 
