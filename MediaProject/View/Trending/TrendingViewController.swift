@@ -8,11 +8,11 @@
 import UIKit
 import Alamofire
 
-class TrendingViewController: UIViewController {
+class TrendingViewController: BaseViewController {
 
     // MARK: - Properties
     
-    @IBOutlet var trendingTableView: UITableView!
+    let trendingView = TrendingView()
     
     lazy var mapButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage(systemName: "map"), style: .plain, target: self, action: #selector(tappedMapButton))
@@ -26,20 +26,28 @@ class TrendingViewController: UIViewController {
     
     // MARK: - LifeCycle
     
+    override func loadView() {
+        view = trendingView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        callRequest(page: page)
+    }
+    
+    // MARK: - BaseViewController
+    
+    override func configViewComponents() {
+        super.configViewComponents()
+        
         navigationItem.rightBarButtonItem = mapButton
         
-        let trendingTableViewCellNib = UINib(nibName: TrendingTableViewCell.identifier, bundle: nil)
-        trendingTableView.register(trendingTableViewCellNib, forCellReuseIdentifier: TrendingTableViewCell.identifier)
+        trendingView.trendingTableView.delegate = self
+        trendingView.trendingTableView.dataSource = self
+        trendingView.trendingTableView.prefetchDataSource = self
         
-        trendingTableView.delegate = self
-        trendingTableView.dataSource = self
-        trendingTableView.prefetchDataSource = self
-        
-        configTableView()
-        callRequest(page: page)
+        trendingView.trendingTableView.separatorStyle = .none
     }
     
     // MARK: - Action
@@ -56,7 +64,7 @@ class TrendingViewController: UIViewController {
     func callRequest(page: Int) {
         TMDBManager.shared.callTrendingRequest(page: page) { resultList in
             self.movieList.append(contentsOf: resultList)
-            self.trendingTableView.reloadData()
+            self.trendingView.trendingTableView.reloadData()
         }
     }
 }
@@ -97,14 +105,5 @@ extension TrendingViewController: UITableViewDataSourcePrefetching {
                 callRequest(page: page)
             }
         }
-    }
-}
-
-// MARK: - UI
-
-extension TrendingViewController {
-    func configTableView() {
-        trendingTableView.rowHeight = 424
-        trendingTableView.separatorStyle = .none
     }
 }
