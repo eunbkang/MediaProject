@@ -7,33 +7,47 @@
 
 import UIKit
 
-class TVShowViewController: UIViewController {
+class TVShowViewController: BaseViewController {
     
-    @IBOutlet var tvShowTableView: UITableView!
+    let tvShowView = TrendingView()
     
     var tvList: [TVResult] = []
     var page: Int = 1
     
+    // MARK: - LifeCycle
+    
+    override func loadView() {
+        view = tvShowView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let trendingTableViewCellNib = UINib(nibName: TrendingTableViewCell.identifier, bundle: nil)
-        tvShowTableView.register(trendingTableViewCellNib, forCellReuseIdentifier: TrendingTableViewCell.identifier)
-        
-        tvShowTableView.delegate = self
-        tvShowTableView.dataSource = self
-        
-        configTableView()
         callRequest(page: page)
     }
+    
+    // MARK: - BaseViewController
+    
+    override func configViewComponents() {
+        super.configViewComponents()
+        
+        tvShowView.trendingTableView.delegate = self
+        tvShowView.trendingTableView.dataSource = self
+        
+        tvShowView.trendingTableView.separatorStyle = .none
+    }
+    
+    // MARK: - Helper
     
     func callRequest(page: Int) {
         TMDBManager.shared.callTrendingTVRequest(page: page) { resultList in
             self.tvList.append(contentsOf: resultList)
-            self.tvShowTableView.reloadData()
+            self.tvShowView.trendingTableView.reloadData()
         }
     }
 }
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension TVShowViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,12 +71,5 @@ extension TVShowViewController: UITableViewDelegate, UITableViewDataSource {
         
         navigationController?.pushViewController(vc, animated: true)
         
-    }
-}
-
-extension TVShowViewController {
-    func configTableView() {
-        tvShowTableView.rowHeight = 424
-        tvShowTableView.separatorStyle = .none
     }
 }

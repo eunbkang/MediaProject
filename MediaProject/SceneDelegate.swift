@@ -19,8 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let isOnboardingCompleted = UserDefaultsManager.shared.isOnboardingCompleted
         
         if isOnboardingCompleted {
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            guard let vc = sb.instantiateViewController(withIdentifier: MainTabBarController.identifier) as? MainTabBarController else { return }
+            let vc = MainTabBarController()
             
             window?.rootViewController = vc
             
