@@ -13,6 +13,8 @@ protocol PassNicknameDelegate {
 
 class ProfileViewController: BaseViewController {
     
+    // MARK: - Properties
+    
     let mainView = ProfileView()
     
     var observedName: String? {
@@ -27,9 +29,13 @@ class ProfileViewController: BaseViewController {
         }
     }
     
-    override func loadView() {
-        view = mainView
+    var escapedIntroduction: String? {
+        didSet {
+            mainView.profileTableView.reloadData()
+        }
     }
+    
+    // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +45,24 @@ class ProfileViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        print(#function)
-        NotificationCenter.default.addObserver(self, selector: #selector(observedProfileNameNotification), name: .name, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(observedProfileNameNotification),
+            name: .name,
+            object: nil
+        )
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self, name: .name, object: nil)
+    }
+    
+    // MARK: - BaseViewController
+    
+    override func loadView() {
+        view = mainView
     }
     
     override func configViewComponents() {
@@ -52,15 +74,16 @@ class ProfileViewController: BaseViewController {
         mainView.profileTableView.dataSource = self
     }
     
+    // MARK: - Action
+    
     @objc func observedProfileNameNotification(notification: NSNotification) {
-        print(#function)
-        
         if let name = notification.userInfo?["name"] as? String {
             observedName = name
         }
-        
     }
 }
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -82,7 +105,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.itemContentLabel.text = profileItem.text
             }
         case .nickname:
-            print("cellForRowAt nickname")
             if let receivedNickname {
                 cell.itemContentLabel.text = receivedNickname
             } else {
@@ -90,7 +112,11 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
         case .introduction:
-            print("cellForRowAt introduction")
+            if let escapedIntroduction {
+                cell.itemContentLabel.text = escapedIntroduction
+            } else {
+                cell.itemContentLabel.text = profileItem.text
+            }
         }
         
         return cell
@@ -99,15 +125,25 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier) as? ProfileTableViewCell else { return }
         
+        let profileItem = ProfileItem.allCases[indexPath.row]
+        
         let vc = ProfileEditViewController()
         vc.configDataToView(profileItem: ProfileItem.allCases[indexPath.row], content: cell.itemContentLabel.text ?? "")
         vc.profileItem = ProfileItem.allCases[indexPath.row]
         
-        vc.delegate = self
+        if profileItem == .nickname {
+            vc.delegate = self
+        } else if profileItem == .introduction {
+            vc.completionHandler = { text in
+                self.escapedIntroduction = text
+            }
+        }
         
         navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+// MARK: - PassNicknameDelegate
 
 extension ProfileViewController: PassNicknameDelegate {
     func receiveNickname(nickname: String) {

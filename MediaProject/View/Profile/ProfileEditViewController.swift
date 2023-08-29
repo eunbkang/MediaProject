@@ -20,6 +20,8 @@ class ProfileEditViewController: BaseViewController {
     
     var delegate: PassNicknameDelegate?
     
+    var completionHandler: ((String) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,21 +30,21 @@ class ProfileEditViewController: BaseViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
+        let textToPass = textField.text ?? ""
+        
         switch profileItem {
         case .name:
-            print("name")
             NotificationCenter.default.post(
                 name: .name,
                 object: nil,
-                userInfo: ["name": textField.text ?? ""]
+                userInfo: ["name": textToPass]
             )
             
         case .nickname:
-            print("nickname")
-            delegate?.receiveNickname(nickname: textField.text ?? "")
+            delegate?.receiveNickname(nickname: textToPass)
             
         case .introduction:
-            print("introduction")
+            completionHandler?(textToPass)
             
         case .none:
             print("unexpected case")
