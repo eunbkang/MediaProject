@@ -7,11 +7,21 @@
 
 import UIKit
 
+protocol PassNicknameDelegate {
+    func receiveNickname(nickname: String)
+}
+
 class ProfileViewController: BaseViewController {
     
     let mainView = ProfileView()
     
     var observedName: String? {
+        didSet {
+            mainView.profileTableView.reloadData()
+        }
+    }
+    
+    var receivedNickname: String? {
         didSet {
             mainView.profileTableView.reloadData()
         }
@@ -73,6 +83,11 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             }
         case .nickname:
             print("cellForRowAt nickname")
+            if let receivedNickname {
+                cell.itemContentLabel.text = receivedNickname
+            } else {
+                cell.itemContentLabel.text = profileItem.text
+            }
             
         case .introduction:
             print("cellForRowAt introduction")
@@ -88,6 +103,14 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         vc.configDataToView(profileItem: ProfileItem.allCases[indexPath.row], content: cell.itemContentLabel.text ?? "")
         vc.profileItem = ProfileItem.allCases[indexPath.row]
         
+        vc.delegate = self
+        
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension ProfileViewController: PassNicknameDelegate {
+    func receiveNickname(nickname: String) {
+        receivedNickname = nickname
     }
 }

@@ -18,6 +18,8 @@ class ProfileEditViewController: BaseViewController {
     
     var profileItem: ProfileItem?
     
+    var delegate: PassNicknameDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +39,7 @@ class ProfileEditViewController: BaseViewController {
             
         case .nickname:
             print("nickname")
+            delegate?.receiveNickname(nickname: textField.text ?? "")
             
         case .introduction:
             print("introduction")
