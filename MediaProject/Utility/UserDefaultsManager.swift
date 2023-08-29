@@ -22,4 +22,31 @@ class UserDefaultsManager {
             userDefaults.set(newValue, forKey: "isOnboardingCompleted")
         }
     }
+    
+    var name: String {
+        get {
+            return userDefaults.string(forKey: "name") ?? ProfileItem.name.text
+        }
+        set {
+            userDefaults.set(newValue, forKey: "name")
+        }
+    }
+    
+    var nickname: String {
+        get {
+            return userDefaults.string(forKey: "nickname") ?? ProfileItem.nickname.text
+        }
+        set {
+            userDefaults.set(newValue, forKey: "nickname")
+        }
+    }
+    
+    var introduction: String {
+        get {
+            return userDefaults.string(forKey: "introduction") ?? ProfileItem.introduction.text
+        }
+        set {
+            userDefaults.set(newValue, forKey: "introduction")
+        }
+    }
 }

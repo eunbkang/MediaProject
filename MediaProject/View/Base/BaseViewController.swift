@@ -13,9 +13,12 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
 
         configViewComponents()
+        configLayoutConstraints()
     }
 
     func configViewComponents() {
         view.backgroundColor = .white
     }
+    
+    func configLayoutConstraints() { }
 }
