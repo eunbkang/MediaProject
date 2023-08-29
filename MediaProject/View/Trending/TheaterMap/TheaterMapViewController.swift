@@ -14,18 +14,18 @@ class TheaterMapViewController: UIViewController {
 
     // MARK: - Properties
     
-    let locationManager = CLLocationManager()
-    let mapView = MKMapView()
+    private let locationManager = CLLocationManager()
+    private let mapView = MKMapView()
     
-    let buttonImageSize: CGFloat = 17
+    private let buttonImageSize: CGFloat = 17
     
-    let theaterList = TheaterList().mapAnnotations
+    private let theaterList = TheaterList().mapAnnotations
     
-    let defaultLocation = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
+    private let defaultLocation = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
     
-    var annotationList: [MKPointAnnotation] = []
+    private var annotationList: [MKPointAnnotation] = []
     
-    lazy var closeButton: UIButton = {
+    private lazy var closeButton: UIButton = {
         let button = UIButton()
         self.configButton(button, image: "xmark", imageSize: buttonImageSize)
         button.addTarget(self, action: #selector(tappedCloseButton), for: .touchUpInside)
@@ -33,7 +33,7 @@ class TheaterMapViewController: UIViewController {
         return button
     }()
     
-    lazy var currentLocationButton: UIButton = {
+    private lazy var currentLocationButton: UIButton = {
         let button = UIButton()
         self.configButton(button, image: "location", imageSize: buttonImageSize)
         button.addTarget(self, action: #selector(tappedCurrentLocationButton), for: .touchUpInside)
@@ -41,7 +41,7 @@ class TheaterMapViewController: UIViewController {
         return button
     }()
     
-    lazy var filterButton: UIButton = {
+    private lazy var filterButton: UIButton = {
         let button = UIButton()
         self.configButton(button, image: "square.3.layers.3d", imageSize: buttonImageSize)
         button.addTarget(self, action: #selector(tappedFilterButton), for: .touchUpInside)
@@ -49,7 +49,7 @@ class TheaterMapViewController: UIViewController {
         return button
     }()
     
-    lazy var topRightStackView: UIStackView = {
+    private lazy var topRightStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [currentLocationButton, filterButton])
         stackView.axis = .vertical
         stackView.alignment = .fill
@@ -79,15 +79,15 @@ class TheaterMapViewController: UIViewController {
     
     // MARK: - Actions
     
-    @objc func tappedCloseButton() {
+    @objc private func tappedCloseButton() {
         dismiss(animated: true)
     }
     
-    @objc func tappedCurrentLocationButton() {
+    @objc private func tappedCurrentLocationButton() {
         checkDeviceLocationAuthorization()
     }
     
-    @objc func tappedFilterButton() {
+    @objc private func tappedFilterButton() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let megabox = UIAlertAction(title: "메가박스", style: .default) { _ in
             self.makeAnnotationList(type: .megabox)
@@ -112,18 +112,18 @@ class TheaterMapViewController: UIViewController {
     
     // MARK: - Helpers
     
-    func setAnnotations() {
+    private func setAnnotations() {
         mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotations(annotationList)
     }
     
-    func setRegion(center: CLLocationCoordinate2D) {
+    private func setRegion(center: CLLocationCoordinate2D) {
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 5000, longitudinalMeters: 5000)
             
         mapView.setRegion(region, animated: true)
     }
     
-    func makeAnnotationList(type: TheaterType) {
+    private func makeAnnotationList(type: TheaterType) {
         annotationList.removeAll()
         
         let filteredList = type == .all ? theaterList : theaterList.filter { $0.type == type }
@@ -136,7 +136,7 @@ class TheaterMapViewController: UIViewController {
         setAnnotations()
     }
     
-    func convertTheaterToAnnotation(theater: Theater) -> MKPointAnnotation {
+    private func convertTheaterToAnnotation(theater: Theater) -> MKPointAnnotation {
         let annotation = MKPointAnnotation()
         annotation.title = theater.location
         annotation.coordinate = CLLocationCoordinate2D(latitude: theater.latitude, longitude: theater.longitude)
@@ -144,7 +144,7 @@ class TheaterMapViewController: UIViewController {
         return annotation
     }
     
-    func checkDeviceLocationAuthorization() {
+    private func checkDeviceLocationAuthorization() {
         DispatchQueue.global().async {
             if CLLocationManager.locationServicesEnabled() {
                 let authorization: CLAuthorizationStatus
@@ -165,7 +165,7 @@ class TheaterMapViewController: UIViewController {
         }
     }
 
-    func checkCurrentLocationAuthorization(status: CLAuthorizationStatus) {
+    private func checkCurrentLocationAuthorization(status: CLAuthorizationStatus) {
         switch status {
         case .notDetermined:
             print("notDetermined")
@@ -194,7 +194,7 @@ class TheaterMapViewController: UIViewController {
         }
     }
     
-    func showLocationSettingAlert() {
+    private func showLocationSettingAlert() {
         let alert = UIAlertController(title: "위치 정보 이용", message: "위치 서비스를 사용할 수 없습니다. 기기의 '설정>개인정보 보호'에서 위치 서비스를 켜주세요.", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "설정으로 이동", style: .default) { _ in
             if let appSetting = URL(string: UIApplication.openSettingsURLString) {
@@ -235,7 +235,7 @@ extension TheaterMapViewController: MKMapViewDelegate {
 // MARK: - Layout
 
 extension TheaterMapViewController {
-    func configLayoutConstraints() {
+    private func configLayoutConstraints() {
         let viewList = [mapView, closeButton, topRightStackView]
         for item in viewList {
             view.addSubview(item)
@@ -255,7 +255,7 @@ extension TheaterMapViewController {
         }
     }
     
-    func configButton(_ button: UIButton, image: String, imageSize: CGFloat) {
+    private func configButton(_ button: UIButton, image: String, imageSize: CGFloat) {
         let inset: CGFloat = 10
         
         var config = UIButton.Configuration.plain()

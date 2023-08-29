@@ -9,13 +9,13 @@ import UIKit
 
 class TVDetailViewController: BaseViewController {
     
-    let mainView = TVDetailView()
+    private let mainView = TVDetailView()
     
     var seriesId: Int?
     var numberOfSeasons: Int?
     
     var tvDetail: TVDetail?
-    var tvSeason: [[Episode]] = []
+    private var tvSeason: [[Episode]] = []
     
     override func loadView() {
         view = mainView
@@ -34,7 +34,7 @@ class TVDetailViewController: BaseViewController {
         mainView.tvDetailCollectionView.dataSource = self
     }
     
-    func callTVDetailRequest() {
+    private func callTVDetailRequest() {
         guard let seriesId else { return }
         
         TMDBManager.shared.callTVDetailRequest(seriesId: seriesId) { data in
@@ -43,7 +43,7 @@ class TVDetailViewController: BaseViewController {
         }
     }
 
-    func callTVSeasonRequest(seriesId: Int, numberOfSeasons: Int) {
+    private func callTVSeasonRequest(seriesId: Int, numberOfSeasons: Int) {
         
         for seasonNo in 1...numberOfSeasons {
             TMDBManager.shared.callTVSeasonRequest(seriesId: seriesId, seasonNo: seasonNo) { data in

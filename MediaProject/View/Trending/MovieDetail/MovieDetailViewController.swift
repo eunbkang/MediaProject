@@ -12,14 +12,14 @@ class MovieDetailViewController: BaseViewController {
     
     // MARK: - Properties
     
-    let mainView = MovieDetailView()
+    private let mainView = MovieDetailView()
     
     var movie: MovieResult?
     var castList: [Cast]?
     var videoList: [Video]?
     var similarMovieList: [MovieResult]?
     
-    var isShowingMore: Bool = false
+    private var isShowingMore: Bool = false
     
     // MARK: - LifeCycle
     
@@ -44,7 +44,7 @@ class MovieDetailViewController: BaseViewController {
         mainView.movieDetailTableView.dataSource = self
     }
     
-    func callRequest() {
+    private func callRequest() {
         guard let movieId = movie?.id else { return }
         
         let group = DispatchGroup()

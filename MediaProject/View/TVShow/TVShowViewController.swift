@@ -9,10 +9,10 @@ import UIKit
 
 class TVShowViewController: BaseViewController {
     
-    let tvShowView = TrendingView()
+    private let tvShowView = TrendingView()
     
-    var tvList: [TVResult] = []
-    var page: Int = 1
+    private var tvList: [TVResult] = []
+    private var page: Int = 1
     
     // MARK: - LifeCycle
     
@@ -41,7 +41,7 @@ class TVShowViewController: BaseViewController {
     
     // MARK: - Helper
     
-    func callRequest(page: Int) {
+    private func callRequest(page: Int) {
         TMDBManager.shared.callTrendingTVRequest(page: page) { resultList in
             self.tvList.append(contentsOf: resultList)
             self.tvShowView.trendingTableView.reloadData()

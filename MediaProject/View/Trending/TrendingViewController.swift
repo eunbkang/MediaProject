@@ -12,17 +12,17 @@ class TrendingViewController: BaseViewController {
 
     // MARK: - Properties
     
-    let trendingView = TrendingView()
+    private let trendingView = TrendingView()
     
-    lazy var mapButton: UIBarButtonItem = {
+    private lazy var mapButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage(systemName: "map"), style: .plain, target: self, action: #selector(tappedMapButton))
         button.tintColor = .black
         
         return button
     }()
     
-    var movieList: [MovieResult] = []
-    var page = 1
+    private var movieList: [MovieResult] = []
+    private var page = 1
     
     // MARK: - LifeCycle
     
@@ -53,7 +53,7 @@ class TrendingViewController: BaseViewController {
     
     // MARK: - Action
     
-    @objc func tappedMapButton() {
+    @objc private func tappedMapButton() {
         let vc = TheaterMapViewController()
         vc.modalPresentationStyle = .fullScreen
         
@@ -62,7 +62,7 @@ class TrendingViewController: BaseViewController {
     
     // MARK: - Helper
     
-    func callRequest(page: Int) {
+    private func callRequest(page: Int) {
         TMDBManager.shared.callTrendingRequest(page: page) { resultList in
             self.movieList.append(contentsOf: resultList)
             self.trendingView.trendingTableView.reloadData()

@@ -17,19 +17,19 @@ class ProfileViewController: BaseViewController {
     
     let mainView = ProfileView()
     
-    var observedName: String? {
+    private var observedName: String? {
         didSet {
             mainView.profileTableView.reloadData()
         }
     }
     
-    var receivedNickname: String? {
+    private var receivedNickname: String? {
         didSet {
             mainView.profileTableView.reloadData()
         }
     }
     
-    var escapedIntroduction: String? {
+    private var escapedIntroduction: String? {
         didSet {
             mainView.profileTableView.reloadData()
         }

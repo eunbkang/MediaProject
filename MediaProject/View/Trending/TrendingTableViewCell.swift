@@ -12,7 +12,7 @@ class TrendingTableViewCell: BaseTableViewCell {
     
     // MARK: - Properties
     
-    lazy var releaseDateLabel: UILabel = {
+    private lazy var releaseDateLabel: UILabel = {
         let label = UILabel()
         label.textColor = .systemGray
         label.font = .preferredFont(forTextStyle: .caption1)
@@ -20,7 +20,7 @@ class TrendingTableViewCell: BaseTableViewCell {
         return label
     }()
     
-    lazy var genreLabel: UILabel = {
+    private lazy var genreLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = .systemFont(ofSize: 15, weight: .semibold)
@@ -28,7 +28,7 @@ class TrendingTableViewCell: BaseTableViewCell {
         return label
     }()
     
-    lazy var cardShadowView: UIView = {
+    private lazy var cardShadowView: UIView = {
         let view = UIView()
         view.backgroundColor = .red
         view.configShadow(cornerRadius: cornerRadius)
@@ -36,7 +36,7 @@ class TrendingTableViewCell: BaseTableViewCell {
         return view
     }()
     
-    lazy var cardBackView: UIView = {
+    private lazy var cardBackView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = cornerRadius
@@ -45,14 +45,14 @@ class TrendingTableViewCell: BaseTableViewCell {
         return view
     }()
     
-    lazy var posterImageView: UIImageView = {
+    private lazy var posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         
         return imageView
     }()
     
-    lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = .preferredFont(forTextStyle: .headline)
@@ -60,7 +60,7 @@ class TrendingTableViewCell: BaseTableViewCell {
         return label
     }()
     
-    lazy var originalTitleLabel: UILabel = {
+    private lazy var originalTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .systemGray
         label.font = .preferredFont(forTextStyle: .subheadline)
@@ -68,7 +68,7 @@ class TrendingTableViewCell: BaseTableViewCell {
         return label
     }()
     
-    let rateTextLabel: UILabel = {
+    private let rateTextLabel: UILabel = {
         let label = UILabel()
         label.text = "평점"
         label.textColor = .white
@@ -79,7 +79,7 @@ class TrendingTableViewCell: BaseTableViewCell {
         return label
     }()
     
-    lazy var rateLabel: UILabel = {
+    private lazy var rateLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.backgroundColor = .white
@@ -89,7 +89,7 @@ class TrendingTableViewCell: BaseTableViewCell {
         return label
     }()
     
-    lazy var rateStackView: UIStackView = {
+    private lazy var rateStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [rateTextLabel, rateLabel])
         stackView.axis = .horizontal
         stackView.alignment = .center
@@ -99,14 +99,14 @@ class TrendingTableViewCell: BaseTableViewCell {
         return stackView
     }()
     
-    let dividerView: UIView = {
+    private let dividerView: UIView = {
         let view = UIView()
         view.backgroundColor = .darkGray
         
         return view
     }()
     
-    let detailViewLabel: UILabel = {
+    private let detailViewLabel: UILabel = {
         let label = UILabel()
         label.text = "자세히 보기"
         label.textColor = .black
@@ -115,7 +115,7 @@ class TrendingTableViewCell: BaseTableViewCell {
         return label
     }()
     
-    let detailImageView: UIImageView = {
+    private let detailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "chevron.right")
         imageView.preferredSymbolConfiguration = .init(font: .preferredFont(forTextStyle: .callout))
@@ -125,7 +125,7 @@ class TrendingTableViewCell: BaseTableViewCell {
         return imageView
     }()
     
-    let cornerRadius: CGFloat = 12
+    private let cornerRadius: CGFloat = 12
     
     // MARK: - BaseTableViewCell
     
