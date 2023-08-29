@@ -69,6 +69,7 @@
 		7E6529702A9DD398004F466B /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E65296F2A9DD398004F466B /* ProfileTableViewCell.swift */; };
 		7E6529782A9DDE3A004F466B /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6529772A9DDE3A004F466B /* ProfileEditViewController.swift */; };
 		7E65297A2A9DE4F8004F466B /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6529792A9DE4F8004F466B /* NSNotification+Extension.swift */; };
+		7E65297C2A9E69F8004F466B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E65297B2A9E69F8004F466B /* UIViewController+Extension.swift */; };
 		7EA0A8AF2A87BB8100CD10ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0A8AE2A87BB8100CD10ED /* AppDelegate.swift */; };
 		7EA0A8B12A87BB8100CD10ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0A8B02A87BB8100CD10ED /* SceneDelegate.swift */; };
 		7EA0A8B32A87BB8100CD10ED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0A8B22A87BB8100CD10ED /* ViewController.swift */; };
@@ -135,6 +136,7 @@
 		7E65296F2A9DD398004F466B /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		7E6529772A9DDE3A004F466B /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
 		7E6529792A9DE4F8004F466B /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
+		7E65297B2A9E69F8004F466B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		7EA0A8AB2A87BB8100CD10ED /* MediaProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediaProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA0A8AE2A87BB8100CD10ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EA0A8B02A87BB8100CD10ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				7E6527D42A887C9F004F466B /* UIView+Extension.swift */,
 				7E6527D62A887CD4004F466B /* URL+Extension.swift */,
 				7E6529792A9DE4F8004F466B /* NSNotification+Extension.swift */,
+				7E65297B2A9E69F8004F466B /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				7E6528382A8DEF90004F466B /* TVDetailCollectionViewCell.swift in Sources */,
 				7E6528692A8FBF2E004F466B /* SimilarMovies.swift in Sources */,
 				7EA0A8B32A87BB8100CD10ED /* ViewController.swift in Sources */,
+				7E65297C2A9E69F8004F466B /* UIViewController+Extension.swift in Sources */,
 				7E65297A2A9DE4F8004F466B /* NSNotification+Extension.swift in Sources */,
 				7EA0A8AF2A87BB8100CD10ED /* AppDelegate.swift in Sources */,
 				7E6527D32A887C6D004F466B /* TMDBManager.swift in Sources */,

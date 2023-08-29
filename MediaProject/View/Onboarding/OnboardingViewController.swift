@@ -81,15 +81,8 @@ class OnboardingViewController: UIViewController {
     @objc func tappedStartButton() {
         UserDefaultsManager.shared.isOnboardingCompleted = true
         
-        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-        let sceneDelegate = windowScene?.delegate as? SceneDelegate
-        
-        let vc = MainTabBarController()
-
-        sceneDelegate?.window?.rootViewController = vc
-        sceneDelegate?.window?.makeKeyAndVisible()
+        transitView(vc: MainTabBarController(), type: .windowRoot)
     }
-    
     
     // MARK: - Helpers
     

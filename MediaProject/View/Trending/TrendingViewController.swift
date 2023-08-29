@@ -57,7 +57,7 @@ class TrendingViewController: BaseViewController {
         let vc = TheaterMapViewController()
         vc.modalPresentationStyle = .fullScreen
         
-        present(vc, animated: true)
+        transitView(vc: vc, type: .present)
     }
     
     // MARK: - Helper
@@ -89,7 +89,7 @@ extension TrendingViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = MovieDetailViewController()
         vc.movie = movieList[indexPath.row]
         
-        navigationController?.pushViewController(vc, animated: true)
+        transitView(vc: vc, type: .push)
     }
 }
 

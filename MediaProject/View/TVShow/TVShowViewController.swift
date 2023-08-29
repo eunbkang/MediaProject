@@ -69,7 +69,6 @@ extension TVShowViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = TVDetailViewController()
         vc.seriesId = tvList[indexPath.row].id
         
-        navigationController?.pushViewController(vc, animated: true)
-        
+        transitView(vc: vc, type: .push)
     }
 }

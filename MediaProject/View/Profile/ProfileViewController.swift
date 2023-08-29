@@ -139,7 +139,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
         
-        navigationController?.pushViewController(vc, animated: true)
+        transitView(vc: vc, type: .push)
     }
 }
 
