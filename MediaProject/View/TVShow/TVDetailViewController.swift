@@ -7,9 +7,9 @@
 
 import UIKit
 
-class TVDetailViewController: UIViewController {
-
-    @IBOutlet var tvDetailCollectionView: UICollectionView!
+class TVDetailViewController: BaseViewController {
+    
+    let mainView = TVDetailView()
     
     var seriesId: Int?
     var numberOfSeasons: Int?
@@ -17,13 +17,21 @@ class TVDetailViewController: UIViewController {
     var tvDetail: TVDetail?
     var tvSeason: [[Episode]] = []
     
+    override func loadView() {
+        view = mainView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        configCollectionView()
-        configCollectionViewLayout()
         
         callTVDetailRequest()
+    }
+    
+    override func configViewComponents() {
+        super.configViewComponents()
+        
+        mainView.tvDetailCollectionView.delegate = self
+        mainView.tvDetailCollectionView.dataSource = self
     }
     
     func callTVDetailRequest() {
@@ -40,7 +48,7 @@ class TVDetailViewController: UIViewController {
         for seasonNo in 1...numberOfSeasons {
             TMDBManager.shared.callTVSeasonRequest(seriesId: seriesId, seasonNo: seasonNo) { data in
                 self.tvSeason.append(data.episodes)
-                self.tvDetailCollectionView.reloadData()
+                self.mainView.tvDetailCollectionView.reloadData()
             }
         }
     }
@@ -81,38 +89,5 @@ extension TVDetailViewController: UICollectionViewDelegate, UICollectionViewData
         } else {
             return UICollectionReusableView()
         }
-    }
-}
-
-// MARK: - CollectionView Layout
-
-extension TVDetailViewController {
-    func configCollectionView() {
-        let tvDetailCollectionViewCellNib = UINib(nibName: TVDetailCollectionViewCell.identifier, bundle: nil)
-        tvDetailCollectionView.register(tvDetailCollectionViewCellNib, forCellWithReuseIdentifier: TVDetailCollectionViewCell.identifier)
-        
-        let tvDetailCollectionReusableViewNib = UINib(nibName: TVDetailCollectionReusableView.identifier, bundle: nil)
-        tvDetailCollectionView.register(tvDetailCollectionReusableViewNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TVDetailCollectionReusableView.identifier)
-        
-        tvDetailCollectionView.delegate = self
-        tvDetailCollectionView.dataSource = self
-    }
-    
-    func configCollectionViewLayout() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-
-        let inset: CGFloat = 20
-        let spacing: CGFloat = 10
-        let width = (UIScreen.main.bounds.width - (spacing * 3) - (inset * 2)) / 3
-
-        layout.itemSize = CGSize(width: width, height: width * 1.6)
-        layout.sectionInset = UIEdgeInsets(top: 0, left: inset, bottom: inset, right: inset)
-        layout.minimumLineSpacing = spacing
-        layout.minimumInteritemSpacing = spacing
-        
-        layout.headerReferenceSize = CGSize(width: 300, height: 36)
-
-        tvDetailCollectionView.collectionViewLayout = layout
     }
 }

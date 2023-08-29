@@ -41,6 +41,7 @@ class TrendingViewController: BaseViewController {
     override func configViewComponents() {
         super.configViewComponents()
         
+        title = "Movie"
         navigationItem.rightBarButtonItem = mapButton
         
         trendingView.trendingTableView.delegate = self
@@ -85,10 +86,7 @@ extension TrendingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let sb = UIStoryboard(name: "MovieDetail", bundle: nil)
-        guard let vc = sb.instantiateViewController(identifier: MovieDetailViewController.identifier) as? MovieDetailViewController else { return }
-        
+        let vc = MovieDetailViewController()
         vc.movie = movieList[indexPath.row]
         
         navigationController?.pushViewController(vc, animated: true)

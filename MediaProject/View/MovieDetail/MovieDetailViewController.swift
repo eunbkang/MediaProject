@@ -8,9 +8,11 @@
 import UIKit
 import Alamofire
 
-class MovieDetailViewController: UIViewController {
-
-    @IBOutlet var movieDetailTableView: UITableView!
+class MovieDetailViewController: BaseViewController {
+    
+    // MARK: - Properties
+    
+    let mainView = MovieDetailView()
     
     var movie: MovieResult?
     var castList: [Cast]?
@@ -19,13 +21,27 @@ class MovieDetailViewController: UIViewController {
     
     var isShowingMore: Bool = false
     
+    // MARK: - LifeCycle
+    
+    override func loadView() {
+        view = mainView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configUI()
-        configTableView()
-        
         callRequest()
+    }
+    
+    // MARK: - BaseViewController
+    
+    override func configViewComponents() {
+        super.configViewComponents()
+        
+        title = "정보"
+        
+        mainView.movieDetailTableView.delegate = self
+        mainView.movieDetailTableView.dataSource = self
     }
     
     func callRequest() {
@@ -52,7 +68,7 @@ class MovieDetailViewController: UIViewController {
         }
         
         group.notify(queue: .main) {
-            self.movieDetailTableView.reloadData()
+            self.mainView.movieDetailTableView.reloadData()
         }
     }
 }
@@ -150,30 +166,5 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
 
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
-    }
-}
-
-// MARK: - UI
-
-extension MovieDetailViewController {
-    func configUI() {
-        title = "출연/제작"
-    }
-    
-    func configTableView() {
-        let posterCellNib = UINib(nibName: DetailPosterTableViewCell.identifier, bundle: nil)
-        let overviewCellNib = UINib(nibName: OverViewTableViewCell.identifier, bundle: nil)
-        let castCellNib = UINib(nibName: CastTableViewCell.identifier, bundle: nil)
-        let videoCellNib = UINib(nibName: VideoTableViewCell.identifier, bundle: nil)
-        let similarCellNib = UINib(nibName: SimilarTableViewCell.identifier, bundle: nil)
-        movieDetailTableView.register(posterCellNib, forCellReuseIdentifier: DetailPosterTableViewCell.identifier)
-        movieDetailTableView.register(overviewCellNib, forCellReuseIdentifier: OverViewTableViewCell.identifier)
-        movieDetailTableView.register(castCellNib, forCellReuseIdentifier: CastTableViewCell.identifier)
-        movieDetailTableView.register(videoCellNib, forCellReuseIdentifier: VideoTableViewCell.identifier)
-        movieDetailTableView.register(similarCellNib, forCellReuseIdentifier: SimilarTableViewCell.identifier)
-        
-        movieDetailTableView.delegate = self
-        movieDetailTableView.dataSource = self
-        movieDetailTableView.rowHeight = UITableView.automaticDimension
     }
 }

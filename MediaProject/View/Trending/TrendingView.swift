@@ -18,6 +18,7 @@ class TrendingView: BaseView {
     }()
     
     override func configViewComponents() {
+        
         addSubview(trendingTableView)
     }
     

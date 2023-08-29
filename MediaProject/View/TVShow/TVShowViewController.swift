@@ -30,7 +30,9 @@ class TVShowViewController: BaseViewController {
     
     override func configViewComponents() {
         super.configViewComponents()
-        
+
+        title = "TV Show"
+
         tvShowView.trendingTableView.delegate = self
         tvShowView.trendingTableView.dataSource = self
         
@@ -64,9 +66,7 @@ extension TVShowViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let sb = UIStoryboard(name: "TVDetail", bundle: nil)
-        guard let vc = sb.instantiateViewController(identifier: TVDetailViewController.identifier) as? TVDetailViewController else { return }
-        
+        let vc = TVDetailViewController()
         vc.seriesId = tvList[indexPath.row].id
         
         navigationController?.pushViewController(vc, animated: true)
