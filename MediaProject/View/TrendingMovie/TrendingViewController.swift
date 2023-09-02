@@ -66,14 +66,10 @@ class TrendingViewController: BaseViewController {
         guard let url = URL.PathType.trendingMovie.makeUrl(id: nil, season: nil, page: page) else { return }
         
         TMDBManager.shared.callRequest(url: url, model: MovieTrending.self) { value in
+            guard let value else { return }
             self.movieList.append(contentsOf: value.results)
             self.trendingView.trendingTableView.reloadData()
         }
-        
-//        TMDBManager.shared.callTrendingMovieRequest(page: page) { resultList in
-//            self.movieList.append(contentsOf: resultList)
-//            self.trendingView.trendingTableView.reloadData()
-//        }
     }
 }
 

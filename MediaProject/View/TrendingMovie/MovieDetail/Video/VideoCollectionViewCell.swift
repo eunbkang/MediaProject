@@ -26,9 +26,6 @@ class VideoCollectionViewCell: UICollectionViewCell {
         titleLabel.text = video.name
         
         guard let url = URL.PathType.youTube.makeUrl(id: video.key, season: nil, page: nil) else { return }
-        
-        print(url)
-//        guard let url = URL(string: URL.makeYouTubeUrl(with: video.key)) else { return }
         videoWebView.load(URLRequest(url: url))
     }
 

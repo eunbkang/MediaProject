@@ -41,6 +41,7 @@ class TVDetailViewController: BaseViewController {
         guard let detailUrl = URL.PathType.tvDetail.makeUrl(id: id, season: nil, page: nil) else { return }
         
         TMDBManager.shared.callRequest(url: detailUrl, model: TVDetail.self) { value in
+            guard let value else { return }
             self.tvDetail = value
             self.callTVSeasonRequest(seriesId: id, numberOfSeasons: value.numberOfSeasons)
         }
@@ -52,6 +53,7 @@ class TVDetailViewController: BaseViewController {
             guard let url = URL.PathType.tvSeason.makeUrl(id: seriesId, season: seasonNo, page: nil) else { return }
             
             TMDBManager.shared.callRequest(url: url, model: TVSeason.self) { value in
+                guard let value else { return }
                 self.tvSeason.append(value.episodes)
                 self.mainView.tvDetailCollectionView.reloadData()
             }

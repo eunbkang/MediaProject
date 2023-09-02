@@ -46,6 +46,7 @@ class TrendingAllViewController: BaseViewController {
         guard let url = URL.PathType.trendingAll.makeUrl(id: nil, season: nil, page: page) else { return }
         
         TMDBManager.shared.callRequest(url: url, model: TrendingAll.self) { value in
+            guard let value else { return }
             self.trendingList.append(contentsOf: value.results)
             self.mainView.trendingAllTableView.reloadData()
         }

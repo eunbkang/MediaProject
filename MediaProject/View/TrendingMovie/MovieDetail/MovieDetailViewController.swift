@@ -56,34 +56,24 @@ class MovieDetailViewController: BaseViewController {
         
         group.enter()
         TMDBManager.shared.callRequest(url: creditUrl, model: MovieCredit.self) { value in
+            guard let value else { return }
             self.castList = value.cast
             group.leave()
         }
-//        TMDBManager.shared.callCreditRequest(movieId: movieId) { resultList in
-//            self.castList = resultList
-//            group.leave()
-//        }
         
         group.enter()
         TMDBManager.shared.callRequest(url: videoUrl, model: MovieVideos.self) { value in
+            guard let value else { return }
             self.videoList = value.results
             group.leave()
         }
-//        TMDBManager.shared.callMovieVideoRequest(movieId: movieId) { resultList in
-//            self.videoList = resultList
-//            group.leave()
-//        }
         
         group.enter()
         TMDBManager.shared.callRequest(url: similarUrl, model: SimilarMovies.self) { value in
+            guard let value else { return }
             self.similarMovieList = value.results
             group.leave()
         }
-        
-//        TMDBManager.shared.callSimilarMovieRequest(movieId: movieId) { resultList in
-//            self.similarMovieList = resultList
-//            group.leave()
-//        }
         
         group.notify(queue: .main) {
             self.mainView.movieDetailTableView.reloadData()
