@@ -36,18 +36,23 @@ class TVDetailViewController: BaseViewController {
     
     private func callTVDetailRequest() {
         guard let seriesId else { return }
+        let id = String(seriesId)
         
-        TMDBManager.shared.callTVDetailRequest(seriesId: seriesId) { data in
-            self.tvDetail = data
-            self.callTVSeasonRequest(seriesId: data.id, numberOfSeasons: data.numberOfSeasons)
+        guard let detailUrl = URL.PathType.tvDetail.makeUrl(id: id, season: nil, page: nil) else { return }
+        
+        TMDBManager.shared.callRequest(url: detailUrl, model: TVDetail.self) { value in
+            self.tvDetail = value
+            self.callTVSeasonRequest(seriesId: id, numberOfSeasons: value.numberOfSeasons)
         }
     }
 
-    private func callTVSeasonRequest(seriesId: Int, numberOfSeasons: Int) {
+    private func callTVSeasonRequest(seriesId: String, numberOfSeasons: Int) {
         
         for seasonNo in 1...numberOfSeasons {
-            TMDBManager.shared.callTVSeasonRequest(seriesId: seriesId, seasonNo: seasonNo) { data in
-                self.tvSeason.append(data.episodes)
+            guard let url = URL.PathType.tvSeason.makeUrl(id: seriesId, season: seasonNo, page: nil) else { return }
+            
+            TMDBManager.shared.callRequest(url: url, model: TVSeason.self) { value in
+                self.tvSeason.append(value.episodes)
                 self.mainView.tvDetailCollectionView.reloadData()
             }
         }

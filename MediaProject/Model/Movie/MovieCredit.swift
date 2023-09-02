@@ -44,11 +44,6 @@ struct Cast: Codable {
         case creditID = "credit_id"
         case order
     }
-    
-    var profileImageUrl: String {
-        let url = URL.makeImageUrl()
-        return url + (profilePath ?? "")
-    }
 }
 
 // MARK: - Crew

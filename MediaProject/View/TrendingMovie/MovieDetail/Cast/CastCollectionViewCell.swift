@@ -26,8 +26,12 @@ class CastCollectionViewCell: UICollectionViewCell {
         nameLabel.text = cast.name
         roleLabel.text = cast.character
 
-        if let imageUrl = URL(string: cast.profileImageUrl) {
-            castImageView.kf.setImage(with: imageUrl)
-        }
+        guard let url = URL.PathType.image.makeUrl(id: cast.profilePath, season: nil, page: nil) else { return }
+        castImageView.kf.setImage(with: url)
+        
+//        if let urlString = cast.profileImageUrl {
+//            guard let url = URL(string: urlString) else { return }
+//            castImageView.kf.setImage(with: url)
+//        }
     }
 }

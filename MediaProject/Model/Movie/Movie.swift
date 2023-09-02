@@ -17,16 +17,6 @@ struct Movie {
     let genreIds: [Int]
     let rate: Double
     
-    var posterImageUrl: String {
-        let url = URL.makeImageUrl()
-        return url + posterImagePath
-    }
-    
-    var backdropImageUrl: String {
-        let url = URL.makeImageUrl()
-        return url + backdropImagePath
-    }
-    
     var genres: String {
         let genreDict = [
             28: "Action",

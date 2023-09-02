@@ -45,27 +45,45 @@ class MovieDetailViewController: BaseViewController {
     }
     
     private func callRequest() {
-        guard let movieId = movie?.id else { return }
+        guard let movieIdInt = movie?.id else { return }
+        let movieId = String(movieIdInt)
+        
+        guard let creditUrl = URL.PathType.movieCredit.makeUrl(id: movieId, season: nil, page: nil),
+              let videoUrl = URL.PathType.movieVideo.makeUrl(id: movieId, season: nil, page: nil),
+              let similarUrl = URL.PathType.movieSimilar.makeUrl(id: movieId, season: nil, page: nil) else { return }
         
         let group = DispatchGroup()
         
         group.enter()
-        TMDBManager.shared.callCreditRequest(movieId: movieId) { resultList in
-            self.castList = resultList
+        TMDBManager.shared.callRequest(url: creditUrl, model: MovieCredit.self) { value in
+            self.castList = value.cast
+            group.leave()
+        }
+//        TMDBManager.shared.callCreditRequest(movieId: movieId) { resultList in
+//            self.castList = resultList
+//            group.leave()
+//        }
+        
+        group.enter()
+        TMDBManager.shared.callRequest(url: videoUrl, model: MovieVideos.self) { value in
+            self.videoList = value.results
+            group.leave()
+        }
+//        TMDBManager.shared.callMovieVideoRequest(movieId: movieId) { resultList in
+//            self.videoList = resultList
+//            group.leave()
+//        }
+        
+        group.enter()
+        TMDBManager.shared.callRequest(url: similarUrl, model: SimilarMovies.self) { value in
+            self.similarMovieList = value.results
             group.leave()
         }
         
-        group.enter()
-        TMDBManager.shared.callMovieVideoRequest(movieId: movieId) { resultList in
-            self.videoList = resultList
-            group.leave()
-        }
-        
-        group.enter()
-        TMDBManager.shared.callSimilarMovieRequest(movieId: movieId) { resultList in
-            self.similarMovieList = resultList
-            group.leave()
-        }
+//        TMDBManager.shared.callSimilarMovieRequest(movieId: movieId) { resultList in
+//            self.similarMovieList = resultList
+//            group.leave()
+//        }
         
         group.notify(queue: .main) {
             self.mainView.movieDetailTableView.reloadData()

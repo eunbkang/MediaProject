@@ -226,7 +226,7 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		7E6527CF2A887C35004F466B /* Trending */ = {
+		7E6527CF2A887C35004F466B /* TrendingMovie */ = {
 			isa = PBXGroup;
 			children = (
 				7E6527E42A888F3D004F466B /* MovieDetail */,
@@ -235,7 +235,7 @@
 				7E6527DC2A887D3C004F466B /* TrendingTableViewCell.swift */,
 				7E65291A2A9CA39E004F466B /* TrendingView.swift */,
 			);
-			path = Trending;
+			path = TrendingMovie;
 			sourceTree = "<group>";
 		};
 		7E6527E42A888F3D004F466B /* MovieDetail */ = {
@@ -281,7 +281,7 @@
 				7E6528DC2A9B903D004F466B /* MainTabBarController.swift */,
 				7E2E84C92AA2C3D00056D007 /* TrendingAll */,
 				7E6528D22A9B6B99004F466B /* Onboarding */,
-				7E6527CF2A887C35004F466B /* Trending */,
+				7E6527CF2A887C35004F466B /* TrendingMovie */,
 				7E6528192A8D1E22004F466B /* TVShow */,
 				7E6529682A9DD162004F466B /* Profile */,
 			);

@@ -222,9 +222,14 @@ class TrendingTableViewCell: BaseTableViewCell {
         rateLabel.text = String(format: "%.1f", movie.voteAverage)
         genreLabel.text = movie.genres
         
-        if let url = URL(string: movie.backdropImageUrl) {
-            posterImageView.kf.setImage(with: url)
-        }
+        
+        guard let url = URL.PathType.image.makeUrl(id: movie.backdropPath, season: nil, page: nil) else { return }
+        posterImageView.kf.setImage(with: url)
+        
+//        if let urlString = movie.backdropImageUrl {
+//            guard let url = URL(string: urlString) else { return }
+//            posterImageView.kf.setImage(with: url)
+//        }
     }
     
     func configTVShowToView(tv: TVResult) {
@@ -234,8 +239,9 @@ class TrendingTableViewCell: BaseTableViewCell {
         rateLabel.text = String(format: "%.1f", tv.voteAverage)
         genreLabel.text = tv.genres
         
-        if let url = URL(string: tv.backdropImageUrl) {
-            posterImageView.kf.setImage(with: url)
-        }
+        guard let url = URL.PathType.image.makeUrl(id: tv.backdropPath, season: nil, page: nil) else { return }
+        posterImageView.kf.setImage(with: url)
+        
+
     }
 }

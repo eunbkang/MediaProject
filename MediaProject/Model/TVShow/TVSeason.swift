@@ -58,11 +58,4 @@ struct Episode: Codable {
         case crew
         case guestStars = "guest_stars"
     }
-    
-    var stillUrl: String {
-        guard let stillPath else { return "" }
-        
-        let url = URL.makeImageUrl()
-        return url + stillPath
-    }
 }

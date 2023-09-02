@@ -25,8 +25,12 @@ class SimilarCollectionViewCell: UICollectionViewCell {
         
         titleLabel.text = movie.title
         
-        if let imageUrl = URL(string: movie.posterImageUrl) {
-            posterImageView.kf.setImage(with: imageUrl)
-        }
+        guard let url = URL.PathType.image.makeUrl(id: movie.posterPath, season: nil, page: nil) else { return }
+        posterImageView.kf.setImage(with: url)
+        
+//        if let urlString = movie.posterImageUrl {
+//            guard let url = URL(string: urlString) else { return }
+//            posterImageView.kf.setImage(with: url)
+//        }
     }
 }

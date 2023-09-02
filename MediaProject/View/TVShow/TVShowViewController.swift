@@ -42,8 +42,10 @@ class TVShowViewController: BaseViewController {
     // MARK: - Helper
     
     private func callRequest(page: Int) {
-        TMDBManager.shared.callTrendingTVRequest(page: page) { resultList in
-            self.tvList.append(contentsOf: resultList)
+        guard let url = URL.PathType.trendingTV.makeUrl(id: nil , season: nil, page: page) else { return }
+        
+        TMDBManager.shared.callRequest(url: url, model: TVTrending.self) { value in
+            self.tvList.append(contentsOf: value.results)
             self.tvShowView.trendingTableView.reloadData()
         }
     }

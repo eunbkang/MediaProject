@@ -205,9 +205,7 @@ class TrendingMovieTableViewCell: BaseTableViewCell {
             rateLabel.text = String(format: "%.1f", rate)
         }
         
-        if let urlString = movie.posterImageUrl {
-            guard let url = URL(string: urlString) else { return }
-            posterImageView.kf.setImage(with: url)
-        }
+        guard let url = URL.PathType.image.makeUrl(id: movie.posterPath, season: nil, page: nil) else { return }
+        posterImageView.kf.setImage(with: url)
     }
 }

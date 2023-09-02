@@ -33,11 +33,21 @@ class DetailPosterTableViewCell: UITableViewCell {
     func configData(row: MovieResult) {
         titleLabel.text = row.title
         
-        if let backdropUrl = URL(string: row.backdropImageUrl) {
-            backdropImageView.kf.setImage(with: backdropUrl)
-        }
-        if let posterUrl = URL(string: row.posterImageUrl) {
-            posterImageView.kf.setImage(with: posterUrl)
-        }
+        
+        guard let backdropUrl = URL.PathType.image.makeUrl(id: row.backdropPath, season: nil, page: nil),
+              let posterUrl = URL.PathType.image.makeUrl(id: row.posterPath, season: nil, page: nil)
+        else { return }
+        
+        backdropImageView.kf.setImage(with: backdropUrl)
+        posterImageView.kf.setImage(with: posterUrl)
+        
+//        if let backdropUrlString = row.backdropImageUrl {
+//            guard let backdropUrl = URL(string: backdropUrlString) else { return }
+//            backdropImageView.kf.setImage(with: backdropUrl)
+//        }
+//        if let posterUrlString = row.posterImageUrl {
+//            guard let posterUrl = URL(string: posterUrlString) else { return }
+//            posterImageView.kf.setImage(with: posterUrl)
+//        }
     }
 }

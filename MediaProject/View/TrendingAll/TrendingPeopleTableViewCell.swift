@@ -114,9 +114,7 @@ class TrendingPeopleTableViewCell: BaseTableViewCell {
         nameLabel.text = person.name
         departmentLabel.text = person.knownForDepartment?.rawValue
         
-        if let urlString = person.profileImageUrl {
-            guard let url = URL(string: urlString) else { return }
-            profileImageView.kf.setImage(with: url)
-        }
+        guard let url = URL.PathType.image.makeUrl(id: person.profilePath, season: nil, page: nil) else { return }
+        profileImageView.kf.setImage(with: url)
     }
 }

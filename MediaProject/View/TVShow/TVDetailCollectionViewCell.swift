@@ -24,8 +24,7 @@ class TVDetailCollectionViewCell: UICollectionViewCell {
     func configData(row: Episode) {
         titleLabel.text = "\(row.episodeNumber): \(row.name)"
         
-        if let stillUrl = URL(string: row.stillUrl) {
-            stillImageView.kf.setImage(with: stillUrl)
-        }
+        guard let url = URL.PathType.image.makeUrl(id: row.stillPath, season: nil, page: nil) else { return }
+        stillImageView.kf.setImage(with: url)
     }
 }

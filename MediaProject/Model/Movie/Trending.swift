@@ -51,20 +51,6 @@ struct MovieResult: Codable {
         case overview, popularity, title, adult
     }
     
-    var posterImageUrl: String {
-        let url = URL.makeImageUrl()
-        guard let posterPath else { return "" }
-        
-        return url + posterPath
-    }
-    
-    var backdropImageUrl: String {
-        let url = URL.makeImageUrl()
-        guard let backdropPath else { return "" }
-        
-        return url + backdropPath
-    }
-    
     var genres: String {
         let genreDict = [
             28: "Action",
@@ -114,10 +100,10 @@ struct TVTrending: Codable {
 // MARK: - Result
 struct TVResult: Codable {
     let adult: Bool
-    let backdropPath: String
+    let backdropPath: String?
     let id: Int
     let name, originalLanguage, originalName, overview: String
-    let posterPath: String
+    let posterPath: String?
     let mediaType: MediaType
     let genreIDS: [Int]
     let popularity: Double
@@ -141,16 +127,6 @@ struct TVResult: Codable {
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
         case originCountry = "origin_country"
-    }
-    
-    var posterImageUrl: String {
-        let url = URL.makeImageUrl()
-        return url + posterPath
-    }
-    
-    var backdropImageUrl: String {
-        let url = URL.makeImageUrl()
-        return url + backdropPath
     }
     
     var genres: String {
