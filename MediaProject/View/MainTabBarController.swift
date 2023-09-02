@@ -11,7 +11,17 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .white
 
+        let mainVC = TrendingAllViewController()
+        mainVC.tabBarItem = UITabBarItem(
+            title: "Trending",
+            image: UIImage(systemName: "doc.text.image"),
+            selectedImage: UIImage(systemName: "doc.text.image.fill")
+        )
+        let mainTab = UINavigationController(rootViewController: mainVC)
+        
         let firstVC = TrendingViewController()
         firstVC.tabBarItem = UITabBarItem(
             title: "Movie",
@@ -36,6 +46,6 @@ class MainTabBarController: UITabBarController {
         )
         let thirdTab = UINavigationController(rootViewController: thirdVC)
         
-        setViewControllers([firstTab, secondTab, thirdTab], animated: false)
+        setViewControllers([mainTab, firstTab, secondTab, thirdTab], animated: false)
     }
 }

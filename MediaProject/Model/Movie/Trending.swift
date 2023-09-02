@@ -182,8 +182,3 @@ struct TVResult: Codable {
         return text
     }
 }
-
-enum MediaType: String, Codable {
-    case movie = "movie"
-    case tv = "tv"
-}
