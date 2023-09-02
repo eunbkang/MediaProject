@@ -79,10 +79,6 @@ class TrendingPeopleTableViewCell: BaseTableViewCell {
         for item in subViewList {
             cardBackView.addSubview(item)
         }
-        
-        profileImageView.image = UIImage(systemName: "person.fill")
-        nameLabel.text = "Harrison Ford"
-        departmentLabel.text = "Actor"
     }
     
     override func configLayoutConstraints() {

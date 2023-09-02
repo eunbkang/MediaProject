@@ -48,8 +48,6 @@ class TrendingTVTableViewCell: BaseTableViewCell {
     private lazy var posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 8
-        imageView.clipsToBounds = true
         
         return imageView
     }()
@@ -123,26 +121,26 @@ class TrendingTVTableViewCell: BaseTableViewCell {
         
         contentView.addSubview(cardShadowView)
         contentView.addSubview(cardBackView)
+        contentView.addSubview(genreLabel)
         
-        let subViewList = [posterImageView, tvLabel, releaseDateLabel, titleLabel, originalTitleLabel, genreLabel, rateStackView]
+        let subViewList = [posterImageView, tvLabel, releaseDateLabel, titleLabel, originalTitleLabel, rateStackView]
         
         for item in subViewList {
             cardBackView.addSubview(item)
         }
-        
-        posterImageView.image = UIImage(systemName: "sailboat.fill")
-        releaseDateLabel.text = "2023-08-31"
-        titleLabel.text = "시간의 수레바퀴"
-        originalTitleLabel.text = "The Wheel of Time"
-        genreLabel.text = "#Sci-fi & Fantasy #Drama"
-        rateLabel.text = "7.7"
     }
     
     override func configLayoutConstraints() {
         
+        genreLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
+        
         cardBackView.snp.makeConstraints { make in
+            make.top.equalTo(genreLabel.snp.bottom).offset(12)
             make.horizontalEdges.equalToSuperview().inset(16)
-            make.verticalEdges.equalToSuperview().inset(12)
+            make.bottom.equalToSuperview().inset(12)
         }
         
         cardShadowView.snp.makeConstraints { make in
@@ -150,15 +148,15 @@ class TrendingTVTableViewCell: BaseTableViewCell {
         }
         
         posterImageView.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.28)
+            make.width.equalToSuperview().multipliedBy(0.35)
             make.height.equalTo(posterImageView.snp.width).multipliedBy(1.333333)
-            make.top.trailing.bottom.equalToSuperview().inset(16)
+            make.top.trailing.bottom.equalToSuperview()
         }
         
         tvLabel.snp.makeConstraints { make in
             make.height.equalTo(24)
             make.width.equalTo(52)
-            make.top.equalTo(posterImageView)
+            make.top.equalToSuperview().inset(16)
             make.trailing.equalTo(posterImageView.snp.leading).offset(-16)
         }
         
@@ -179,11 +177,6 @@ class TrendingTVTableViewCell: BaseTableViewCell {
             make.top.equalTo(titleLabel.snp.bottom).offset(4)
         }
         
-        genreLabel.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(titleLabel)
-            make.top.equalTo(originalTitleLabel.snp.bottom).offset(4)
-        }
-        
         rateTextLabel.snp.makeConstraints { make in
             make.width.equalTo(32)
             make.height.equalTo(24)
@@ -196,7 +189,7 @@ class TrendingTVTableViewCell: BaseTableViewCell {
         
         rateStackView.snp.makeConstraints { make in
             make.trailing.equalTo(tvLabel)
-            make.bottom.equalTo(posterImageView)
+            make.bottom.equalToSuperview().inset(16)
         }
     }
     

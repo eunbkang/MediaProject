@@ -35,6 +35,7 @@ class TrendingAllViewController: BaseViewController {
         
         mainView.trendingAllTableView.delegate = self
         mainView.trendingAllTableView.dataSource = self
+        mainView.trendingAllTableView.prefetchDataSource = self
         
         mainView.trendingAllTableView.separatorStyle = .none
     }
@@ -83,6 +84,19 @@ extension TrendingAllViewController: UITableViewDelegate, UITableViewDataSource 
             cell.setDataToView(trending)
             
             return cell
+        }
+    }
+}
+
+// MARK: - UITableViewDataSourcePrefetching
+
+extension TrendingAllViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            if trendingList.count - 1 == indexPath.row && page < 500 {
+                page += 1
+                callRequest(page: page)
+            }
         }
     }
 }
