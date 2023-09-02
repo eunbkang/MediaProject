@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TrendingTVTableViewCell: BaseTableViewCell {
 
@@ -196,6 +197,24 @@ class TrendingTVTableViewCell: BaseTableViewCell {
         rateStackView.snp.makeConstraints { make in
             make.trailing.equalTo(tvLabel)
             make.bottom.equalTo(posterImageView)
+        }
+    }
+    
+    // MARK: - Helper
+    
+    func setDataToView(_ tv: Trending) {
+        releaseDateLabel.text = tv.firstAirDate
+        titleLabel.text = tv.name
+        originalTitleLabel.text = tv.originalName
+        genreLabel.text = tv.genres
+        
+        if let rate = tv.voteAverage {
+            rateLabel.text = String(format: "%.1f", rate)
+        }
+        
+        if let urlString = tv.posterImageUrl {
+            guard let url = URL(string: urlString) else { return }
+            posterImageView.kf.setImage(with: url)
         }
     }
     

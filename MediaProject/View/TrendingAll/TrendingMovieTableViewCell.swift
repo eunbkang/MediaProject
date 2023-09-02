@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TrendingMovieTableViewCell: BaseTableViewCell {
     
@@ -128,13 +129,6 @@ class TrendingMovieTableViewCell: BaseTableViewCell {
         for item in subViewList {
             cardBackView.addSubview(item)
         }
-        
-        posterImageView.image = UIImage(systemName: "sailboat.fill")
-        releaseDateLabel.text = "2023-08-31"
-        titleLabel.text = "시간의 수레바퀴"
-        originalTitleLabel.text = "The Wheel of Time"
-        genreLabel.text = "#Sci-fi & Fantasy #Drama"
-        rateLabel.text = "7.7"
     }
     
     override func configLayoutConstraints() {
@@ -196,6 +190,24 @@ class TrendingMovieTableViewCell: BaseTableViewCell {
         rateStackView.snp.makeConstraints { make in
             make.leading.equalTo(movieLabel)
             make.bottom.equalTo(posterImageView)
+        }
+    }
+    
+    // MARK: - Helper
+    
+    func setDataToView(_ movie: Trending) {
+        releaseDateLabel.text = movie.releaseDate
+        titleLabel.text = movie.title
+        originalTitleLabel.text = movie.originalTitle
+        genreLabel.text = movie.genres
+        
+        if let rate = movie.voteAverage {
+            rateLabel.text = String(format: "%.1f", rate)
+        }
+        
+        if let urlString = movie.posterImageUrl {
+            guard let url = URL(string: urlString) else { return }
+            posterImageView.kf.setImage(with: url)
         }
     }
 }

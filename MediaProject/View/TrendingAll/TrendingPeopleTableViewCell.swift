@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TrendingPeopleTableViewCell: BaseTableViewCell {
     
@@ -108,6 +109,18 @@ class TrendingPeopleTableViewCell: BaseTableViewCell {
             make.centerY.equalTo(profileImageView)
             make.leading.equalTo(profileImageView.snp.trailing).offset(16)
             make.trailing.equalToSuperview().inset(16)
+        }
+    }
+    
+    // MARK: - Helper
+    
+    func setDataToView(_ person: Trending) {
+        nameLabel.text = person.name
+        departmentLabel.text = person.knownForDepartment?.rawValue
+        
+        if let urlString = person.profileImageUrl {
+            guard let url = URL(string: urlString) else { return }
+            profileImageView.kf.setImage(with: url)
         }
     }
 }

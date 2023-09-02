@@ -17,8 +17,23 @@ class TMDBManager {
         "Authorization": "Bearer \(APIKey.tmbdToken)"
     ]
     
-    func callTrendingRequest(page: Int, completion: @escaping ([MovieResult]) -> ()) {
-        let url = URL.makeEndPointUrl() + "&page=\(page)"
+    func callTrendingAllRequest(page: Int, completion: @escaping ([Trending]) -> ()) {
+        let url = URL.makeTrendingAllUrl() + "&page=\(page)"
+        
+        AF.request(url, method: .get, headers: header).validate()
+            .responseDecodable(of: TrendingAll.self) { response in
+                switch response.result {
+                case .success(let value):
+                    completion(value.results)
+                    
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
+    
+    func callTrendingMovieRequest(page: Int, completion: @escaping ([MovieResult]) -> ()) {
+        let url = URL.makeTrendingMovieUrl() + "&page=\(page)"
         
         AF.request(url, method: .get, headers: header).validate()
             .responseDecodable(of: MovieTrending.self) { response in

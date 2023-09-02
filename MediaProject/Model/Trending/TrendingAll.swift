@@ -49,12 +49,27 @@ struct Trending: Codable {
         case knownForDepartment = "known_for_department"
     }
     
-    func makeImageUrlWithPath(path: String?) -> String {
+    var posterImageUrl: String? {
         let url = URL.makeImageUrl()
-        guard let path else { return "" }
+        guard let posterPath else { return nil }
         
-        return url + path
+        return url + posterPath
     }
+    
+    var backdropImageUrl: String? {
+        let url = URL.makeImageUrl()
+        guard let backdropPath else { return nil }
+        
+        return url + backdropPath
+    }
+    
+    var profileImageUrl: String? {
+        let url = URL.makeImageUrl()
+        guard let profilePath else { return nil }
+        
+        return url + profilePath
+    }
+    
     
     var genres: String {
         let genreDict = [

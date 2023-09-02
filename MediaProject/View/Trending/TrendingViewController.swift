@@ -63,7 +63,7 @@ class TrendingViewController: BaseViewController {
     // MARK: - Helper
     
     private func callRequest(page: Int) {
-        TMDBManager.shared.callTrendingRequest(page: page) { resultList in
+        TMDBManager.shared.callTrendingMovieRequest(page: page) { resultList in
             self.movieList.append(contentsOf: resultList)
             self.trendingView.trendingTableView.reloadData()
         }

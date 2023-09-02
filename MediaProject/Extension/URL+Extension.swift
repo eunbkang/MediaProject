@@ -13,7 +13,11 @@ extension URL {
     static let languageQuery = "?language=ko-KR"
     static let youTubeBaseUrl = "https://www.youtube.com/embed/"
     
-    static func makeEndPointUrl() -> String {
+    static func makeTrendingAllUrl() -> String {
+        return baseUrl + "trending/all/week" + languageQuery
+    }
+    
+    static func makeTrendingMovieUrl() -> String {
         return baseUrl + "trending/movie/week" + languageQuery
     }
     
